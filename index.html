@@ -70,6 +70,165 @@
 
     .nav-links a:hover { color: var(--green); }
 
+    /* ── VIRLYN MUSIC PLAYER ─────────────────────── */
+    .music-player {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(107,114,84,0.1);
+      border: 1px solid rgba(107,114,84,0.25);
+      border-radius: 40px;
+      padding: 8px 16px 8px 10px;
+      cursor: pointer;
+      transition: background 0.3s, border-color 0.3s;
+      position: relative;
+    }
+
+    .music-player:hover { background: rgba(107,114,84,0.18); border-color: rgba(107,114,84,0.45); }
+
+    .music-btn {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--green);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.3s;
+    }
+
+    .music-btn:hover { background: var(--green-dark); }
+    .music-btn svg { width: 12px; height: 12px; fill: var(--cream); }
+
+    .music-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+
+    .music-label {
+      font-size: 0.5rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--green);
+      font-weight: 500;
+    }
+
+    .music-title {
+      font-size: 0.65rem;
+      color: var(--mid);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 160px;
+    }
+
+    .music-bars {
+      display: flex;
+      align-items: flex-end;
+      gap: 2px;
+      height: 14px;
+      margin-left: 4px;
+    }
+
+    .music-bars span {
+      display: block;
+      width: 3px;
+      background: var(--green);
+      border-radius: 2px;
+      opacity: 0.7;
+    }
+
+    .music-bars span:nth-child(1) { height: 6px; animation: bar1 0.8s ease-in-out infinite alternate; }
+    .music-bars span:nth-child(2) { height: 12px; animation: bar2 0.6s ease-in-out infinite alternate; }
+    .music-bars span:nth-child(3) { height: 8px; animation: bar3 0.9s ease-in-out infinite alternate; }
+    .music-bars span:nth-child(4) { height: 14px; animation: bar4 0.7s ease-in-out infinite alternate; }
+
+    .music-bars.paused span { animation: none; height: 4px !important; }
+
+    @keyframes bar1 { from { height: 4px; } to { height: 10px; } }
+    @keyframes bar2 { from { height: 6px; } to { height: 14px; } }
+    @keyframes bar3 { from { height: 4px; } to { height: 12px; } }
+    @keyframes bar4 { from { height: 8px; } to { height: 14px; } }
+
+    .music-dropdown {
+      display: none;
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+      background: rgba(243,237,225,0.97);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(107,114,84,0.2);
+      border-radius: 12px;
+      min-width: 260px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+      overflow: hidden;
+      z-index: 200;
+    }
+
+    .music-dropdown.open { display: block; }
+
+    .music-dropdown-header {
+      padding: 12px 16px 8px;
+      font-size: 0.55rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--green);
+      border-bottom: 1px solid rgba(107,114,84,0.15);
+    }
+
+    .music-track {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 16px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .music-track:hover { background: rgba(107,114,84,0.08); }
+    .music-track.active { background: rgba(107,114,84,0.12); }
+
+    .track-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      color: rgba(107,114,84,0.4);
+      width: 20px;
+      text-align: center;
+    }
+
+    .music-track.active .track-num { color: var(--green); }
+
+    .track-info { flex: 1; overflow: hidden; }
+
+    .track-name {
+      font-size: 0.75rem;
+      color: var(--dark);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .track-artist {
+      font-size: 0.6rem;
+      color: var(--mid);
+      margin-top: 2px;
+    }
+
+    @media (max-width: 900px) {
+      .music-title { max-width: 110px; }
+    }
+
+    @media (max-width: 600px) {
+      .music-player { padding: 6px 10px 6px 6px; gap: 6px; }
+      .music-info { display: none; }
+      .music-bars { margin-left: 0; }
+      .music-dropdown { right: -10px; min-width: 220px; }
+    }
+
     /* ── HERO ────────────────────────────────────── */
     #hero {
       min-height: 100vh;
@@ -649,7 +808,48 @@
     <li><a href="#gallery">Gallery</a></li>
     <li><a href="#rsvp">RSVP</a></li>
   </ul>
+
+  <!-- Virlyn Music Player -->
+  <div class="music-player" id="musicPlayer">
+    <button class="music-btn" id="musicToggle" onclick="togglePlay(event)">
+      <!-- Play icon -->
+      <svg id="iconPlay" viewBox="0 0 12 12"><polygon points="3,1 11,6 3,11"/></svg>
+      <!-- Pause icon -->
+      <svg id="iconPause" viewBox="0 0 12 12" style="display:none"><rect x="2" y="1" width="3" height="10" rx="1"/><rect x="7" y="1" width="3" height="10" rx="1"/></svg>
+    </button>
+    <div class="music-info" onclick="toggleDropdown(event)">
+      <span class="music-label">Virlyn Music</span>
+      <span class="music-title" id="musicTitle">A Thousand Years</span>
+    </div>
+    <div class="music-bars paused" id="musicBars" onclick="toggleDropdown(event)">
+      <span></span><span></span><span></span><span></span>
+    </div>
+
+    <!-- Dropdown playlist -->
+    <div class="music-dropdown" id="musicDropdown">
+      <div class="music-dropdown-header">Playlist</div>
+      <div class="music-track active" data-index="0" onclick="selectTrack(0)">
+        <span class="track-num">01</span>
+        <div class="track-info">
+          <div class="track-name">A Thousand Years</div>
+          <div class="track-artist">Christina Perri · Piano Cover by Riyandi Kusuma</div>
+        </div>
+      </div>
+      <div class="music-track" data-index="1" onclick="selectTrack(1)">
+        <span class="track-num">02</span>
+        <div class="track-info">
+          <div class="track-name">Beautiful in White x Canon in D</div>
+          <div class="track-artist">Piano Cover by Riyandi Kusuma</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </nav>
+
+<!-- Audio -->
+<audio id="weddingAudio">
+  <source src="Christina Perri - A Thousand Years (Piano Cover by Riyandi Kusuma).mp3" type="audio/mpeg">
+</audio>
 
 <!-- HERO -->
 <section id="hero">
@@ -1160,6 +1360,77 @@
 </footer>
 
 <script>
+  // ── VIRLYN MUSIC PLAYER ───────────────────────────
+  const audio = document.getElementById('weddingAudio');
+  const iconPlay = document.getElementById('iconPlay');
+  const iconPause = document.getElementById('iconPause');
+  const musicBars = document.getElementById('musicBars');
+  const musicTitle = document.getElementById('musicTitle');
+
+  const playlist = [
+    {
+      src: 'Christina Perri - A Thousand Years (Piano Cover by Riyandi Kusuma).mp3',
+      title: 'A Thousand Years',
+      artist: 'Christina Perri · Piano Cover by Riyandi Kusuma'
+    },
+    {
+      src: 'Beautiful in White x Canon in D (Piano Cover by Riyandi Kusuma).mp3',
+      title: 'Beautiful in White x Canon in D',
+      artist: 'Piano Cover by Riyandi Kusuma'
+    }
+    // Add more songs here: { src: 'filename.mp3', title: '...', artist: '...' }
+  ];
+
+  let currentTrack = 0;
+  let isPlaying = false;
+
+  function setPlayState(playing) {
+    isPlaying = playing;
+    iconPlay.style.display = playing ? 'none' : 'block';
+    iconPause.style.display = playing ? 'block' : 'none';
+    musicBars.classList.toggle('paused', !playing);
+  }
+
+  function togglePlay(e) {
+    e.stopPropagation();
+    if (isPlaying) {
+      audio.pause();
+      setPlayState(false);
+    } else {
+      audio.play().then(() => setPlayState(true)).catch(() => {});
+    }
+  }
+
+  function toggleDropdown(e) {
+    e.stopPropagation();
+    document.getElementById('musicDropdown').classList.toggle('open');
+  }
+
+  function selectTrack(index) {
+    currentTrack = index;
+    const track = playlist[index];
+    audio.src = track.src;
+    musicTitle.textContent = track.title;
+    document.querySelectorAll('.music-track').forEach((el, i) => {
+      el.classList.toggle('active', i === index);
+    });
+    document.getElementById('musicDropdown').classList.remove('open');
+    audio.play().then(() => setPlayState(true)).catch(() => {});
+  }
+
+  // Close dropdown on outside click
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('#musicPlayer')) {
+      document.getElementById('musicDropdown').classList.remove('open');
+    }
+  });
+
+  // Auto-advance when track ends (non-loop mode for playlist)
+  audio.addEventListener('ended', () => {
+    const next = (currentTrack + 1) % playlist.length;
+    selectTrack(next);
+  });
+
   function handleRsvp(e) {
     e.preventDefault();
     const btn = e.target.querySelector('.btn-submit');
