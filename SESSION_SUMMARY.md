@@ -1,5 +1,5 @@
 # Wedding Website — Session Summary
-**Date:** 2026-05-25
+**Last updated:** 2026-05-26
 **File:** `index.html`
 
 ---
@@ -34,8 +34,7 @@
 - `mix-blend-mode: multiply` used on nav logo to blend background
 
 ### 5. Logo Float Animation (hero)
-- Gentle `logoFloat` keyframe: drifts up 5px + scales to 1.03x over 4s, infinite loop
-- Applied to `.monogram img`
+- ~~Removed~~ — animation deleted, logo is now static
 
 ### 6. Botanical Stem Animation
 - Both `.hero-botanical-top` and `.hero-botanical-bottom` SVGs split into 4 `<g>` groups by x-position
@@ -43,6 +42,18 @@
 - Each group sways with `stemSway` keyframe (0.7° rotate + 3px translateY) with 1.2s staggered delays
 - Creates a left-to-right breeze wave effect
 - `transform-box: fill-box; transform-origin: bottom center` for correct pivot point
+
+### 7. Footer Logo Fix
+- Was: `width: 48px; object-fit: contain` → white rectangle visible inside circle
+- Fixed: `width: 100%; height: 100%; object-fit: cover; border-radius: 50%` (matches hero style)
+- Removed `filter: brightness(0) invert(1)` white-tint
+
+### 8. Botanical Mobile Responsiveness
+- Problem: `preserveAspectRatio="none"` squished ~50 stems into 375px → stems every 6px
+- Added `.hero-botanical-desktop` class to existing 1440px SVGs, hidden on ≤768px
+- Added `.hero-botanical-mobile` SVGs with 7 stems evenly spread in a 400px viewBox
+- Mobile stems: stroke-width 2.5, spaced at x=30,90,155,200,245,310,370
+- Both top + bottom botanical have desktop/mobile variants
 
 ---
 
@@ -65,6 +76,8 @@ wedding/
 | `.cover-*` | Cover page component styles |
 | `.stem-g1` – `.stem-g4` | Animated botanical groups |
 | `@keyframes stemSway` | Breeze wave on stems |
-| `@keyframes logoFloat` | Hero logo float animation |
+| ~~`@keyframes logoFloat`~~ | Removed — logo static |
 | `@keyframes coverFadeIn` | Cover content entrance |
 | `@keyframes coverPulseBtn` | Enter button pulse ring |
+| `.hero-botanical-desktop` | Desktop botanical SVG (hidden on mobile) |
+| `.hero-botanical-mobile` | Mobile botanical SVG (7 stems, shown on ≤768px) |

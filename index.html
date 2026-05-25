@@ -57,6 +57,7 @@
       border-radius: 50%;
       border: 1px solid rgba(107,114,84,0.35);
       mix-blend-mode: multiply;
+      opacity: 0.7;
     }
 
     .nav-links {
@@ -400,6 +401,60 @@
       .music-dropdown { right: -10px; min-width: 220px; }
     }
 
+    /* ── SONG TOAST ─────────────────────────────── */
+    #songToast {
+      position: fixed;
+      top: 70px;
+      right: 20px;
+      background: var(--cream);
+      border: 1px solid rgba(107,114,84,0.35);
+      border-radius: 12px;
+      padding: 12px 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 300;
+      max-width: 240px;
+      opacity: 0;
+      transform: translateY(-8px);
+      transition: opacity 0.35s ease, transform 0.35s ease;
+      pointer-events: none;
+    }
+    #songToast.show {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+    #songToast svg {
+      flex-shrink: 0;
+      color: var(--green);
+    }
+    #songToast p {
+      font-size: 0.7rem;
+      color: var(--mid);
+      line-height: 1.4;
+      margin: 0;
+    }
+    #songToast p strong {
+      color: var(--green-dark);
+      display: block;
+      font-size: 0.72rem;
+      margin-bottom: 1px;
+    }
+    #songToastClose {
+      position: absolute;
+      top: 6px;
+      right: 8px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 0.8rem;
+      color: var(--mid);
+      line-height: 1;
+      padding: 0;
+    }
+
     /* ── HERO ────────────────────────────────────── */
     #hero {
       min-height: 100vh;
@@ -415,7 +470,7 @@
 
     .hero-botanical-top {
       position: absolute;
-      top: 0; left: 0; right: 0;
+      top: 88px; left: 0; right: 0;
       width: 100%;
       height: 220px;
       opacity: 0.55;
@@ -464,7 +519,7 @@
       width: 130px;
       height: 130px;
       margin: 0 auto 32px;
-      border: 1.5px solid var(--green);
+      border: 1.5px solid var(--cream);
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -482,6 +537,7 @@
       object-fit: cover;
       position: relative;
       z-index: 1;
+      opacity: 0.6;
     }
 
     .hero-names {
@@ -956,6 +1012,12 @@
 
     .botanical-band svg { width: 100%; height: 200px; opacity: 0.18; }
 
+    .hero-botanical-mobile { display: none; }
+    @media (max-width: 768px) {
+      .hero-botanical-desktop { display: none; }
+      .hero-botanical-mobile { display: block; }
+    }
+
     /* ── RESPONSIVE ──────────────────────────────── */
     @media (max-width: 900px) {
       nav { padding: 18px 24px; }
@@ -1083,9 +1145,25 @@
           <div class="track-artist">Piano Cover by Riyandi Kusuma</div>
         </div>
       </div>
+      <div class="music-track" data-index="3" onclick="selectTrack(3)">
+        <span class="track-num">04</span>
+        <div class="track-info">
+          <div class="track-name">Love Story</div>
+          <div class="track-artist">Taylor Swift · Piano Cover by Riyandi Kusuma</div>
+        </div>
+      </div>
     </div>
   </div>
 </nav>
+
+<!-- Song toast notification -->
+<div id="songToast">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
+  </svg>
+  <p><strong>Pick a song</strong>Click / press on music player above to choose your favorite track</p>
+  <button id="songToastClose" aria-label="Dismiss">&times;</button>
+</div>
 
 <!-- Audio -->
 <audio id="weddingAudio">
@@ -1096,7 +1174,7 @@
 <section id="hero">
 
   <!-- top botanical border -->
-  <svg class="hero-botanical-top" viewBox="0 0 1440 220" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+  <svg class="hero-botanical-top hero-botanical-desktop" viewBox="0 0 1440 220" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
     <!-- group 1: x 60–360 -->
     <g class="stem-g1" fill="none" stroke="#6b7254" stroke-width="1">
       <line x1="60" y1="220" x2="60" y2="120"/><circle cx="60" cy="112" r="8" fill="#6b7254" fill-opacity=".3"/>
@@ -1186,11 +1264,30 @@
     </g>
   </svg>
 
+  <!-- top botanical border — mobile -->
+  <svg class="hero-botanical-top hero-botanical-mobile" viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <g fill="none" stroke="#6b7254" stroke-width="2.5" stroke-linecap="round">
+      <line x1="30" y1="220" x2="30" y2="52"/>
+      <circle cx="30" cy="40" r="12" fill="#6b7254" fill-opacity=".15"/><circle cx="30" cy="40" r="6"/>
+      <line x1="90" y1="220" x2="93" y2="97"/>
+      <ellipse cx="93" cy="85" rx="7" ry="12" fill="#6b7254" fill-opacity=".2"/>
+      <line x1="155" y1="220" x2="158" y2="82"/>
+      <line x1="158" y1="82" x2="144" y2="63"/><line x1="158" y1="82" x2="172" y2="63"/><line x1="158" y1="82" x2="158" y2="55"/>
+      <circle cx="158" cy="55" r="7" fill="#6b7254" fill-opacity=".25"/>
+      <line x1="200" y1="220" x2="200" y2="125"/>
+      <circle cx="200" cy="113" r="9" fill="#6b7254" fill-opacity=".3"/>
+      <line x1="245" y1="220" x2="242" y2="80"/>
+      <line x1="242" y1="80" x2="228" y2="61"/><line x1="242" y1="80" x2="256" y2="61"/><line x1="242" y1="80" x2="242" y2="53"/>
+      <circle cx="242" cy="53" r="7" fill="#6b7254" fill-opacity=".22"/>
+      <line x1="310" y1="220" x2="313" y2="92"/>
+      <ellipse cx="313" cy="80" rx="6" ry="11" fill="#6b7254" fill-opacity=".18"/>
+      <line x1="370" y1="220" x2="368" y2="54"/>
+      <circle cx="368" cy="42" r="11" fill="#6b7254" fill-opacity=".13"/><circle cx="368" cy="42" r="5"/>
+    </g>
+  </svg>
+
   <div class="hero-content">
     <p class="hero-date">November 22, 2026</p>
-    <div class="monogram">
-      <img src="logo.jpeg" alt="C &amp; E monogram" />
-    </div>
     <h1 class="hero-names">
       Chester
       <span class="amp">&amp;</span>
@@ -1208,7 +1305,7 @@
   </div>
 
   <!-- bottom botanical border (mirrored) -->
-  <svg class="hero-botanical-bottom" viewBox="0 0 1440 220" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+  <svg class="hero-botanical-bottom hero-botanical-desktop" viewBox="0 0 1440 220" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
     <g class="stem-g1" fill="none" stroke="#6b7254" stroke-width="1">
       <line x1="60" y1="220" x2="60" y2="120"/><circle cx="60" cy="112" r="8" fill="#6b7254" fill-opacity=".3"/>
       <line x1="100" y1="220" x2="105" y2="100"/><ellipse cx="105" cy="90" rx="6" ry="10" fill="#6b7254" fill-opacity=".2"/>
@@ -1258,6 +1355,28 @@
       <line x1="1355" y1="220" x2="1358" y2="115"/><ellipse cx="1358" cy="105" rx="5" ry="9" fill="#6b7254" fill-opacity=".2"/>
       <line x1="1400" y1="220" x2="1403" y2="85"/>
       <line x1="1403" y1="85" x2="1391" y2="68"/><line x1="1403" y1="85" x2="1415" y2="68"/><circle cx="1403" cy="58" r="6"/>
+    </g>
+  </svg>
+
+  <!-- bottom botanical border — mobile -->
+  <svg class="hero-botanical-bottom hero-botanical-mobile" viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <g fill="none" stroke="#6b7254" stroke-width="2.5" stroke-linecap="round">
+      <line x1="30" y1="220" x2="30" y2="52"/>
+      <circle cx="30" cy="40" r="12" fill="#6b7254" fill-opacity=".15"/><circle cx="30" cy="40" r="6"/>
+      <line x1="90" y1="220" x2="93" y2="97"/>
+      <ellipse cx="93" cy="85" rx="7" ry="12" fill="#6b7254" fill-opacity=".2"/>
+      <line x1="155" y1="220" x2="158" y2="82"/>
+      <line x1="158" y1="82" x2="144" y2="63"/><line x1="158" y1="82" x2="172" y2="63"/><line x1="158" y1="82" x2="158" y2="55"/>
+      <circle cx="158" cy="55" r="7" fill="#6b7254" fill-opacity=".25"/>
+      <line x1="200" y1="220" x2="200" y2="125"/>
+      <circle cx="200" cy="113" r="9" fill="#6b7254" fill-opacity=".3"/>
+      <line x1="245" y1="220" x2="242" y2="80"/>
+      <line x1="242" y1="80" x2="228" y2="61"/><line x1="242" y1="80" x2="256" y2="61"/><line x1="242" y1="80" x2="242" y2="53"/>
+      <circle cx="242" cy="53" r="7" fill="#6b7254" fill-opacity=".22"/>
+      <line x1="310" y1="220" x2="313" y2="92"/>
+      <ellipse cx="313" cy="80" rx="6" ry="11" fill="#6b7254" fill-opacity=".18"/>
+      <line x1="370" y1="220" x2="368" y2="54"/>
+      <circle cx="368" cy="42" r="11" fill="#6b7254" fill-opacity=".13"/><circle cx="368" cy="42" r="5"/>
     </g>
   </svg>
 
@@ -1625,6 +1744,11 @@
       src: "Nothing's Gonna Change My Love for You (Piano Cover by Riyandi Kusuma).mp3",
       title: "Nothing's Gonna Change My Love for You",
       artist: 'Piano Cover by Riyandi Kusuma'
+    },
+    {
+      src: 'Taylor Swift - Love Story (Piano Cover by Riyandi Kusuma).mp3',
+      title: 'Love Story',
+      artist: 'Taylor Swift · Piano Cover by Riyandi Kusuma'
     }
     // Add more songs here: { src: 'filename.mp3', title: '...', artist: '...' }
   ];
@@ -1694,6 +1818,33 @@
     const next = (currentTrack + 1) % playlist.length;
     selectTrack(next);
   });
+
+  // ── SONG TOAST ON FIRST SCROLL ───────────────────
+  (function() {
+    const toast = document.getElementById('songToast');
+    const closeBtn = document.getElementById('songToastClose');
+    let shown = false;
+
+    function showToast() {
+      if (shown) return;
+      shown = true;
+      toast.classList.add('show');
+      window.removeEventListener('scroll', onScroll);
+      // Auto-dismiss after 5s
+      setTimeout(hideToast, 5000);
+    }
+
+    function hideToast() {
+      toast.classList.remove('show');
+    }
+
+    function onScroll() {
+      if (window.scrollY > 60) showToast();
+    }
+
+    closeBtn.addEventListener('click', hideToast);
+    window.addEventListener('scroll', onScroll, { passive: true });
+  })();
 
   function handleRsvp(e) {
     e.preventDefault();
