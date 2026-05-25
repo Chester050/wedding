@@ -46,11 +46,17 @@
     }
 
     .nav-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1rem;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      color: var(--green);
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-logo img {
+      height: 48px;
+      width: 48px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 1px solid rgba(107,114,84,0.35);
+      mix-blend-mode: multiply;
     }
 
     .nav-links {
@@ -69,6 +75,147 @@
     }
 
     .nav-links a:hover { color: var(--green); }
+
+    /* ── COVER PAGE ──────────────────────────────── */
+    #coverPage {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: var(--cream);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: opacity 0.9s ease, visibility 0.9s ease;
+      overflow: hidden;
+    }
+
+    #coverPage.hide {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .cover-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+      animation: coverFadeIn 1.2s ease both;
+    }
+
+    @keyframes coverFadeIn {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .cover-monogram {
+      width: 140px;
+      height: 140px;
+      border: 1.5px solid var(--green);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      margin-bottom: 8px;
+      overflow: hidden;
+    }
+
+    .cover-monogram::before {
+      content: '';
+      position: absolute;
+      inset: 7px;
+      border: 0.5px solid rgba(107,114,84,0.4);
+      border-radius: 50%;
+    }
+
+    .cover-monogram img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .cover-date {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin: 0;
+    }
+
+    .cover-names {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 7vw, 5rem);
+      font-weight: 300;
+      color: var(--dark);
+      line-height: 1.1;
+      margin: 0;
+    }
+
+    .cover-names em {
+      font-style: italic;
+      color: var(--green);
+      font-size: 0.85em;
+    }
+
+    .cover-sub {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin: 4px 0 24px;
+    }
+
+    .cover-enter {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--green);
+      border: 1px solid rgba(107,114,84,0.4);
+      border-radius: 40px;
+      padding: 12px 28px;
+      transition: background 0.3s, border-color 0.3s;
+      animation: coverPulseBtn 2.5s ease-in-out 1.5s infinite;
+    }
+
+    .cover-enter svg {
+      width: 14px;
+      height: 14px;
+      color: var(--green);
+    }
+
+    @keyframes coverPulseBtn {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(107,114,84,0.3); }
+      50%       { box-shadow: 0 0 0 8px rgba(107,114,84,0); }
+    }
+
+    #coverPage:hover .cover-enter {
+      background: rgba(107,114,84,0.08);
+      border-color: rgba(107,114,84,0.7);
+    }
+
+    .cover-botanical {
+      position: absolute;
+      width: 180px;
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    .cover-botanical--tl { top: -40px; left: -20px; transform: rotate(15deg); }
+    .cover-botanical--br { bottom: -40px; right: -20px; transform: rotate(195deg); }
+
+    @media (max-width: 600px) {
+      .cover-botanical { width: 120px; }
+    }
 
     /* ── VIRLYN MUSIC PLAYER ─────────────────────── */
     .music-player {
@@ -107,7 +254,31 @@
       display: flex;
       flex-direction: column;
       gap: 1px;
+      cursor: pointer;
     }
+
+    .music-chevron {
+      width: 14px;
+      height: 14px;
+      color: var(--green);
+      opacity: 0.55;
+      flex-shrink: 0;
+      transition: transform 0.25s ease, opacity 0.25s;
+      margin-left: 2px;
+    }
+
+    .music-player.open .music-chevron {
+      transform: rotate(180deg);
+      opacity: 1;
+    }
+
+    @keyframes musicAttention {
+      0%   { box-shadow: 0 0 0 0 rgba(107,114,84,0.55); }
+      60%  { box-shadow: 0 0 0 9px rgba(107,114,84,0.1); }
+      100% { box-shadow: 0 0 0 0 rgba(107,114,84,0); }
+    }
+
+    .music-player.pulse { animation: musicAttention 1.4s ease-out; }
 
     .music-label {
       font-size: 0.5rem;
@@ -259,6 +430,22 @@
       transform: rotate(180deg);
     }
 
+    /* stem sway groups */
+    .stem-g1, .stem-g2, .stem-g3, .stem-g4 {
+      transform-box: fill-box;
+      transform-origin: bottom center;
+    }
+    .stem-g1 { animation: stemSway 5s ease-in-out infinite; }
+    .stem-g2 { animation: stemSway 5s ease-in-out 1.2s infinite; }
+    .stem-g3 { animation: stemSway 5s ease-in-out 2.4s infinite; }
+    .stem-g4 { animation: stemSway 5s ease-in-out 3.6s infinite; }
+
+    @keyframes stemSway {
+      0%, 100% { transform: rotate(0deg) translateY(0); }
+      30%       { transform: rotate(0.7deg) translateY(-3px); }
+      70%       { transform: rotate(-0.5deg) translateY(-2px); }
+    }
+
     .hero-content {
       position: relative;
       text-align: center;
@@ -283,17 +470,19 @@
       align-items: center;
       justify-content: center;
       position: relative;
+      overflow: hidden;
     }
 
-    .monogram::before {
-      content: '';
-      position: absolute;
-      inset: 7px;
-      border: 0.5px solid rgba(107,114,84,0.4);
-      border-radius: 50%;
-    }
+    /* inner ring removed — logo fills full circle */
 
     .monogram svg { width: 70px; height: 70px; }
+    .monogram img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: relative;
+      z-index: 1;
+    }
 
     .hero-names {
       font-family: 'Cormorant Garamond', serif;
@@ -705,6 +894,7 @@
     }
 
     .footer-monogram svg { width: 40px; height: 40px; }
+    .footer-monogram img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
 
     .footer-names {
       font-family: 'Cormorant Garamond', serif;
@@ -799,9 +989,50 @@
 </head>
 <body>
 
+<!-- COVER PAGE -->
+<div id="coverPage">
+  <div class="cover-inner">
+    <div class="cover-monogram">
+      <img src="logo.jpeg" alt="C &amp; E" />
+    </div>
+    <p class="cover-date">November 22, 2026</p>
+    <h1 class="cover-names">Chester <em>&</em> Elbee</h1>
+    <p class="cover-sub">A wedding celebration</p>
+    <div class="cover-enter">
+      <span>Enter</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,6 19,12 13,18"/>
+      </svg>
+    </div>
+  </div>
+  <!-- floating botanicals -->
+  <svg class="cover-botanical cover-botanical--tl" viewBox="0 0 200 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <line x1="100" y1="300" x2="100" y2="60" stroke="#6b7254" stroke-width="1.2"/>
+    <line x1="100" y1="200" x2="60" y2="150" stroke="#6b7254" stroke-width="0.9"/>
+    <line x1="100" y1="170" x2="145" y2="120" stroke="#6b7254" stroke-width="0.9"/>
+    <line x1="100" y1="140" x2="65" y2="95" stroke="#6b7254" stroke-width="0.9"/>
+    <ellipse cx="55" cy="147" rx="14" ry="22" fill="#6b7254" fill-opacity="0.18" transform="rotate(-30 55 147)"/>
+    <ellipse cx="148" cy="117" rx="12" ry="20" fill="#6b7254" fill-opacity="0.15" transform="rotate(20 148 117)"/>
+    <ellipse cx="62" cy="92" rx="10" ry="17" fill="#6b7254" fill-opacity="0.13" transform="rotate(-15 62 92)"/>
+    <circle cx="100" cy="56" r="4" fill="#6b7254" fill-opacity="0.35"/>
+  </svg>
+  <svg class="cover-botanical cover-botanical--br" viewBox="0 0 200 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <line x1="100" y1="0" x2="100" y2="240" stroke="#6b7254" stroke-width="1.2"/>
+    <line x1="100" y1="100" x2="140" y2="150" stroke="#6b7254" stroke-width="0.9"/>
+    <line x1="100" y1="130" x2="55" y2="180" stroke="#6b7254" stroke-width="0.9"/>
+    <line x1="100" y1="160" x2="135" y2="205" stroke="#6b7254" stroke-width="0.9"/>
+    <ellipse cx="143" cy="153" rx="14" ry="22" fill="#6b7254" fill-opacity="0.18" transform="rotate(30 143 153)"/>
+    <ellipse cx="52" cy="183" rx="12" ry="20" fill="#6b7254" fill-opacity="0.15" transform="rotate(-20 52 183)"/>
+    <ellipse cx="138" cy="208" rx="10" ry="17" fill="#6b7254" fill-opacity="0.13" transform="rotate(15 138 208)"/>
+    <circle cx="100" cy="244" r="4" fill="#6b7254" fill-opacity="0.35"/>
+  </svg>
+</div>
+
 <!-- NAV -->
 <nav>
-  <div class="nav-logo">C &amp; E</div>
+  <div class="nav-logo">
+    <img src="logo.jpeg" alt="Chester &amp; Elbee" />
+  </div>
   <ul class="nav-links">
     <li><a href="#intro">Our Story</a></li>
     <li><a href="#details">Details</a></li>
@@ -817,13 +1048,16 @@
       <!-- Pause icon -->
       <svg id="iconPause" viewBox="0 0 12 12" style="display:none"><rect x="2" y="1" width="3" height="10" rx="1"/><rect x="7" y="1" width="3" height="10" rx="1"/></svg>
     </button>
-    <div class="music-info" onclick="toggleDropdown(event)">
-      <span class="music-label">Virlyn Music</span>
+    <div class="music-info" onclick="toggleDropdown(event)" title="Browse playlist">
+      <span class="music-label">Now Playing</span>
       <span class="music-title" id="musicTitle">A Thousand Years</span>
     </div>
     <div class="music-bars paused" id="musicBars" onclick="toggleDropdown(event)">
       <span></span><span></span><span></span><span></span>
     </div>
+    <svg class="music-chevron" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" onclick="toggleDropdown(event)" style="cursor:pointer">
+      <polyline points="2,5 7,10 12,5"/>
+    </svg>
 
     <!-- Dropdown playlist -->
     <div class="music-dropdown" id="musicDropdown">
@@ -842,6 +1076,13 @@
           <div class="track-artist">Piano Cover by Riyandi Kusuma</div>
         </div>
       </div>
+      <div class="music-track" data-index="2" onclick="selectTrack(2)">
+        <span class="track-num">03</span>
+        <div class="track-info">
+          <div class="track-name">Nothing's Gonna Change My Love for You</div>
+          <div class="track-artist">Piano Cover by Riyandi Kusuma</div>
+        </div>
+      </div>
     </div>
   </div>
 </nav>
@@ -856,14 +1097,13 @@
 
   <!-- top botanical border -->
   <svg class="hero-botanical-top" viewBox="0 0 1440 220" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-    <g fill="none" stroke="#6b7254" stroke-width="1">
-      <!-- repeating wildflower stems across full width -->
+    <!-- group 1: x 60–360 -->
+    <g class="stem-g1" fill="none" stroke="#6b7254" stroke-width="1">
       <line x1="60" y1="220" x2="60" y2="120"/><circle cx="60" cy="112" r="8" fill="#6b7254" fill-opacity=".3"/>
       <line x1="80" y1="220" x2="75" y2="90"/><circle cx="75" cy="82" r="5"/>
       <line x1="100" y1="220" x2="105" y2="100"/><ellipse cx="105" cy="90" rx="6" ry="10" fill="#6b7254" fill-opacity=".2"/>
       <line x1="130" y1="220" x2="128" y2="60"/>
-      <circle cx="128" cy="52" r="10" fill="#6b7254" fill-opacity=".15"/>
-      <circle cx="128" cy="52" r="5"/>
+      <circle cx="128" cy="52" r="10" fill="#6b7254" fill-opacity=".15"/><circle cx="128" cy="52" r="5"/>
       <line x1="128" y1="52" x2="118" y2="38"/><line x1="128" y1="52" x2="138" y2="38"/>
       <line x1="160" y1="220" x2="162" y2="110"/><circle cx="162" cy="102" r="6" fill="#6b7254" fill-opacity=".25"/>
       <line x1="185" y1="220" x2="183" y2="80"/>
@@ -878,6 +1118,9 @@
       <line x1="330" y1="220" x2="333" y2="55"/>
       <circle cx="333" cy="47" r="11" fill="#6b7254" fill-opacity=".12"/><circle cx="333" cy="47" r="5"/>
       <line x1="360" y1="220" x2="358" y2="100"/><ellipse cx="358" cy="90" rx="6" ry="10" fill="#6b7254" fill-opacity=".2"/>
+    </g>
+    <!-- group 2: x 390–720 -->
+    <g class="stem-g2" fill="none" stroke="#6b7254" stroke-width="1">
       <line x1="390" y1="220" x2="392" y2="130"/><circle cx="392" cy="122" r="5"/>
       <line x1="415" y1="220" x2="413" y2="75"/>
       <line x1="413" y1="75" x2="400" y2="58"/><line x1="413" y1="75" x2="426" y2="58"/><line x1="413" y1="75" x2="413" y2="45"/>
@@ -898,6 +1141,9 @@
       <line x1="682" y1="70" x2="670" y2="53"/><line x1="682" y1="70" x2="694" y2="53"/><line x1="682" y1="70" x2="682" y2="40"/>
       <circle cx="682" cy="40" r="8" fill="#6b7254" fill-opacity=".22"/>
       <line x1="710" y1="220" x2="713" y2="105"/><circle cx="713" cy="97" r="7" fill="#6b7254" fill-opacity=".2"/>
+    </g>
+    <!-- group 3: x 740–1060 -->
+    <g class="stem-g3" fill="none" stroke="#6b7254" stroke-width="1">
       <line x1="740" y1="220" x2="738" y2="60"/><circle cx="738" cy="52" r="9" fill="#6b7254" fill-opacity=".16"/>
       <line x1="770" y1="220" x2="772" y2="120"/><ellipse cx="772" cy="110" rx="5" ry="9" fill="#6b7254" fill-opacity=".2"/>
       <line x1="800" y1="220" x2="798" y2="85"/>
@@ -915,6 +1161,9 @@
       <line x1="1005" y1="220" x2="1002" y2="75"/>
       <circle cx="1002" cy="67" r="11" fill="#6b7254" fill-opacity=".12"/><circle cx="1002" cy="67" r="5"/>
       <line x1="1035" y1="220" x2="1038" y2="115"/><ellipse cx="1038" cy="105" rx="5" ry="9" fill="#6b7254" fill-opacity=".2"/>
+    </g>
+    <!-- group 4: x 1065–1420 -->
+    <g class="stem-g4" fill="none" stroke="#6b7254" stroke-width="1">
       <line x1="1065" y1="220" x2="1063" y2="80"/>
       <line x1="1063" y1="80" x2="1051" y2="63"/><line x1="1063" y1="80" x2="1075" y2="63"/><line x1="1063" y1="80" x2="1063" y2="50"/>
       <circle cx="1063" cy="50" r="6"/>
@@ -940,16 +1189,7 @@
   <div class="hero-content">
     <p class="hero-date">November 22, 2026</p>
     <div class="monogram">
-      <!-- CE monogram -->
-      <svg viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle"
-          font-family="Cormorant Garamond, serif" font-size="28" fill="#6b7254" font-style="italic" letter-spacing="-2">CE</text>
-        <!-- small botanical sprig on top -->
-        <line x1="35" y1="6" x2="35" y2="16" stroke="#6b7254" stroke-width="0.8"/>
-        <circle cx="35" cy="4" r="2.5" fill="#6b7254" fill-opacity="0.4"/>
-        <line x1="35" y1="10" x2="29" y2="5" stroke="#6b7254" stroke-width="0.8"/>
-        <line x1="35" y1="10" x2="41" y2="5" stroke="#6b7254" stroke-width="0.8"/>
-      </svg>
+      <img src="logo.jpeg" alt="C &amp; E monogram" />
     </div>
     <h1 class="hero-names">
       Chester
@@ -969,7 +1209,7 @@
 
   <!-- bottom botanical border (mirrored) -->
   <svg class="hero-botanical-bottom" viewBox="0 0 1440 220" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-    <g fill="none" stroke="#6b7254" stroke-width="1">
+    <g class="stem-g1" fill="none" stroke="#6b7254" stroke-width="1">
       <line x1="60" y1="220" x2="60" y2="120"/><circle cx="60" cy="112" r="8" fill="#6b7254" fill-opacity=".3"/>
       <line x1="100" y1="220" x2="105" y2="100"/><ellipse cx="105" cy="90" rx="6" ry="10" fill="#6b7254" fill-opacity=".2"/>
       <line x1="140" y1="220" x2="138" y2="60"/>
@@ -982,6 +1222,8 @@
       <circle cx="272" cy="57" r="11" fill="#6b7254" fill-opacity=".12"/><circle cx="272" cy="57" r="5"/>
       <line x1="320" y1="220" x2="323" y2="95"/><ellipse cx="323" cy="85" rx="6" ry="10" fill="#6b7254" fill-opacity=".18"/>
       <line x1="365" y1="220" x2="363" y2="130"/><circle cx="363" cy="122" r="5"/>
+    </g>
+    <g class="stem-g2" fill="none" stroke="#6b7254" stroke-width="1">
       <line x1="410" y1="220" x2="413" y2="75"/>
       <line x1="413" y1="75" x2="401" y2="58"/><line x1="413" y1="75" x2="425" y2="58"/><circle cx="413" cy="48" r="7" fill="#6b7254" fill-opacity=".22"/>
       <line x1="455" y1="220" x2="458" y2="110"/><circle cx="458" cy="102" r="8" fill="#6b7254" fill-opacity=".18"/>
@@ -994,6 +1236,8 @@
       <circle cx="678" cy="57" r="11" fill="#6b7254" fill-opacity=".12"/><circle cx="678" cy="57" r="5"/>
       <line x1="725" y1="220" x2="728" y2="95"/><ellipse cx="728" cy="85" rx="6" ry="10" fill="#6b7254" fill-opacity=".18"/>
       <line x1="770" y1="220" x2="768" y2="130"/><circle cx="768" cy="122" r="5"/>
+    </g>
+    <g class="stem-g3" fill="none" stroke="#6b7254" stroke-width="1">
       <line x1="815" y1="220" x2="818" y2="70"/>
       <line x1="818" y1="70" x2="806" y2="53"/><line x1="818" y1="70" x2="830" y2="53"/><circle cx="818" cy="43" r="8" fill="#6b7254" fill-opacity=".22"/>
       <line x1="860" y1="220" x2="858" y2="105"/><circle cx="858" cy="97" r="7" fill="#6b7254" fill-opacity=".2"/>
@@ -1002,6 +1246,8 @@
       <line x1="995" y1="220" x2="993" y2="80"/>
       <line x1="993" y1="80" x2="981" y2="63"/><line x1="993" y1="80" x2="1005" y2="63"/><circle cx="993" cy="53" r="6"/>
       <line x1="1040" y1="220" x2="1043" y2="110"/><circle cx="1043" cy="102" r="8" fill="#6b7254" fill-opacity=".18"/>
+    </g>
+    <g class="stem-g4" fill="none" stroke="#6b7254" stroke-width="1">
       <line x1="1085" y1="220" x2="1083" y2="65"/><circle cx="1083" cy="57" r="10" fill="#6b7254" fill-opacity=".14"/>
       <line x1="1130" y1="220" x2="1133" y2="95"/><ellipse cx="1133" cy="85" rx="6" ry="10" fill="#6b7254" fill-opacity=".18"/>
       <line x1="1175" y1="220" x2="1173" y2="130"/><circle cx="1173" cy="122" r="5"/>
@@ -1340,10 +1586,7 @@
   </div>
 
   <div class="footer-monogram">
-    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle"
-        font-family="Cormorant Garamond, serif" font-size="18" fill="#f3ede1" font-style="italic" letter-spacing="-1">CE</text>
-    </svg>
+    <img src="logo.jpeg" alt="C &amp; E monogram" />
   </div>
 
   <div class="footer-names">Chester &amp; Elbee</div>
@@ -1377,6 +1620,11 @@
       src: 'Beautiful in White x Canon in D (Piano Cover by Riyandi Kusuma).mp3',
       title: 'Beautiful in White x Canon in D',
       artist: 'Piano Cover by Riyandi Kusuma'
+    },
+    {
+      src: "Nothing's Gonna Change My Love for You (Piano Cover by Riyandi Kusuma).mp3",
+      title: "Nothing's Gonna Change My Love for You",
+      artist: 'Piano Cover by Riyandi Kusuma'
     }
     // Add more songs here: { src: 'filename.mp3', title: '...', artist: '...' }
   ];
@@ -1403,7 +1651,10 @@
 
   function toggleDropdown(e) {
     e.stopPropagation();
-    document.getElementById('musicDropdown').classList.toggle('open');
+    const dropdown = document.getElementById('musicDropdown');
+    const player = document.getElementById('musicPlayer');
+    dropdown.classList.toggle('open');
+    player.classList.toggle('open', dropdown.classList.contains('open'));
   }
 
   function selectTrack(index) {
@@ -1422,7 +1673,20 @@
   document.addEventListener('click', (e) => {
     if (!e.target.closest('#musicPlayer')) {
       document.getElementById('musicDropdown').classList.remove('open');
+      document.getElementById('musicPlayer').classList.remove('open');
     }
+  });
+
+  // Cover page — click to enter & autoplay
+  document.getElementById('coverPage').addEventListener('click', () => {
+    audio.play().then(() => setPlayState(true)).catch(() => {});
+    document.getElementById('coverPage').classList.add('hide');
+    // Pulse music player after cover fades
+    setTimeout(() => {
+      const player = document.getElementById('musicPlayer');
+      player.classList.add('pulse');
+      player.addEventListener('animationend', () => player.classList.remove('pulse'), { once: true });
+    }, 1000);
   });
 
   // Auto-advance when track ends (non-loop mode for playlist)
