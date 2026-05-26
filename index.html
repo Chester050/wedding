@@ -1546,7 +1546,6 @@
 
     <!-- LEFT: Location info -->
     <div style="flex:1; min-width:280px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:60px 48px; background:var(--cream);">
-      <p class="section-label" style="margin-bottom:8px;">Save the Date</p>
       <h2 class="section-title" style="margin-bottom:16px;">Location</h2>
       <div class="thin-rule" style="margin:0 auto 28px;"></div>
 
@@ -1705,7 +1704,7 @@
 
 <!-- RSVP -->
 <section id="rsvp">
-  <p class="section-label">Confirm your presence</p>
+  <p class="section-label">Save it to your Calender</p>
   <h2 class="section-title">RSVP</h2>
   <div class="thin-rule"></div>
   <p>Save the date and join us as we celebrate our wedding day.</p>
@@ -1886,19 +1885,49 @@
 
 
   // fade-in on scroll
+  function fadeIn(el, delay) {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(28px)';
+    el.style.transition = 'opacity 0.7s ease ' + (delay || 0) + 'ms, transform 0.7s ease ' + (delay || 0) + 'ms';
+  }
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.style.opacity = '1';
         entry.target.style.transform = 'translateY(0)';
+        observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.1 });
+  }, { threshold: 0.12 });
 
-  document.querySelectorAll('section, .botanical-band').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(30px)';
-    el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+  // Whole sections (excluding hero)
+  document.querySelectorAll('section:not(#hero), .botanical-band').forEach(el => {
+    fadeIn(el, 0);
+    observer.observe(el);
+  });
+
+  // Story items — staggered
+  document.querySelectorAll('.story-item').forEach((el, i) => {
+    fadeIn(el, i * 120);
+    observer.observe(el);
+  });
+
+  // Details columns — staggered
+  document.querySelectorAll('.details-col').forEach((el, i) => {
+    fadeIn(el, i * 150);
+    observer.observe(el);
+  });
+
+  // Gallery items — staggered
+  document.querySelectorAll('.gallery-item').forEach((el, i) => {
+    fadeIn(el, i * 80);
+    observer.observe(el);
+  });
+
+  // Intro halves
+  document.querySelectorAll('.intro-text, .intro-illustration').forEach((el, i) => {
+    fadeIn(el, i * 120);
     observer.observe(el);
   });
 </script>
