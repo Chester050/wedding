@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "mcp__plugin_puppeteer_puppeteer__puppeteer_navigate",
-      "mcp__plugin_puppeteer_puppeteer__puppeteer_screenshot"
+      "mcp__plugin_puppeteer_puppeteer__puppeteer_screenshot",
+      "mcp__plugin_puppeteer_puppeteer__puppeteer_evaluate"
     ]
   }
 }
