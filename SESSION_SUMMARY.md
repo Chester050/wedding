@@ -1,5 +1,5 @@
 # Wedding Website — Session Summary
-**Last updated:** 2026-05-26
+**Last updated:** 2026-05-27
 **File:** `index.html`
 
 ---
@@ -48,12 +48,60 @@
 - Fixed: `width: 100%; height: 100%; object-fit: cover; border-radius: 50%` (matches hero style)
 - Removed `filter: brightness(0) invert(1)` white-tint
 
+### 9. Scroll Toast — "Pick a Song" Notification
+- On first scroll past 60px, a toast slides in (top-right, below nav)
+- Shows music note icon + "Pick a song / Use the music player above" message
+- Auto-dismisses after 5s; has manual ✕ close button
+- Only triggers once per page load
+- Styled with `#songToast`, `.show` class handles opacity/transform transition
+
+### 10. Botanical Top Stems Uncovered
+- Tops of hero botanical stems were hidden behind fixed nav (~88px tall)
+- Fixed: `.hero-botanical-top { top: 88px }` — stems now fully visible below nav
+
+### 11. Nav Logo Transparency
+- Added `opacity: 0.7` to `.nav-logo img`
+
+### 12. Hero Monogram Transparency
+- Added `opacity: 0.5` to `.monogram img`
+
+### 13. Hero Monogram Border — Invisible
+- Changed `.monogram` border from `var(--green)` → `var(--cream)` (matches page bg `#f3ede1`)
+
+### 14. Hero Monogram Removed
+- Deleted `<div class="monogram">` + `<img>` from hero section entirely
+- "Chester & Elbee" heading naturally moves up; no spacing adjustments needed
+
 ### 8. Botanical Mobile Responsiveness
 - Problem: `preserveAspectRatio="none"` squished ~50 stems into 375px → stems every 6px
 - Added `.hero-botanical-desktop` class to existing 1440px SVGs, hidden on ≤768px
 - Added `.hero-botanical-mobile` SVGs with 7 stems evenly spread in a 400px viewBox
 - Mobile stems: stroke-width 2.5, spaced at x=30,90,155,200,245,310,370
 - Both top + bottom botanical have desktop/mobile variants
+
+### 15. Hero Divider Symbol Removed
+- Removed `<div class="hero-divider">` (droplet SVG between two lines) from hero section
+- Removed standalone `<p class="hero-date">` above names
+
+### 16. Hero Date Merged into Sub-line
+- Date moved into `.hero-sub` alongside location: "Kuala Lumpur · November 22, 2026"
+- Full date (Nov 22) used instead of just month/year
+
+### 17. Countdown Bar — Sticky Bottom
+- Fixed sticky bar at bottom of viewport (`z-index: 9998`)
+- Counts down days · hours · min · sec to November 22, 2026, ticking every second
+- On/after wedding day shows "It's the day!" in italic Cormorant Garamond serif
+- Styled with cream background, green border-top, backdrop blur
+
+### 18. Countdown Labels — More Visible
+- Changed label color from `#6b7254` → `#2a2a25` (dark)
+- Added `font-weight: 500` to DAYS / HOURS / MIN / SEC labels
+
+### 19. RSVP Form Removed — Save to Calendar
+- Removed entire form (first name, last name, email, attendance, guests, dietary note)
+- Removed `handleRsvp()` JS function
+- Replaced with Google Calendar link button (opens calendar pre-filled: "Chester & Elbee Wedding", Nov 22 2026, Kuala Lumpur)
+- Button reuses existing `.btn-submit` style with calendar icon SVG
 
 ---
 

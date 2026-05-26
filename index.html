@@ -1287,21 +1287,12 @@
   </svg>
 
   <div class="hero-content">
-    <p class="hero-date">November 22, 2026</p>
     <h1 class="hero-names">
       Chester
       <span class="amp">&amp;</span>
       Elbee
     </h1>
-    <div class="hero-divider">
-      <span></span>
-      <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M8 1 C8 1 5 4 5 7 C5 8.66 6.34 10 8 10 C9.66 10 11 8.66 11 7 C11 4 8 1 8 1Z" stroke="#6b7254" stroke-width="0.8" fill="#6b7254" fill-opacity="0.2"/>
-        <line x1="8" y1="10" x2="8" y2="15" stroke="#6b7254" stroke-width="0.8"/>
-      </svg>
-      <span></span>
-    </div>
-    <p class="hero-sub">Kuala Lumpur &nbsp;&bull;&nbsp; November 2026</p>
+    <p class="hero-sub">Kuala Lumpur &nbsp;&bull;&nbsp; November 22, 2026</p>
   </div>
 
   <!-- bottom botanical border (mirrored) -->
@@ -1638,47 +1629,15 @@
   <p class="section-label">Confirm your presence</p>
   <h2 class="section-title">RSVP</h2>
   <div class="thin-rule"></div>
-  <p>Please confirm your attendance by October 1st, 2026. We can't wait to celebrate with you.</p>
-  <form class="rsvp-form" onsubmit="handleRsvp(event)">
-    <div class="form-row">
-      <div class="form-field">
-        <label>First Name</label>
-        <input type="text" name="firstname" placeholder="Chester" required />
-      </div>
-      <div class="form-field">
-        <label>Last Name</label>
-        <input type="text" name="lastname" placeholder="Silva" required />
-      </div>
-    </div>
-    <div class="form-field">
-      <label>Email Address</label>
-      <input type="email" name="email" placeholder="your@email.com" required />
-    </div>
-    <div class="form-row">
-      <div class="form-field">
-        <label>Attendance</label>
-        <select name="attendance" required>
-          <option value="" disabled selected>Select one</option>
-          <option value="yes">Joyfully accepts</option>
-          <option value="no">Regretfully declines</option>
-        </select>
-      </div>
-      <div class="form-field">
-        <label>Number of Guests</label>
-        <select name="guests">
-          <option value="1">1 — Just me</option>
-          <option value="2">2 — Myself + 1</option>
-          <option value="3">3 guests</option>
-          <option value="4">4 guests</option>
-        </select>
-      </div>
-    </div>
-    <div class="form-field">
-      <label>Dietary Requirements or Note</label>
-      <textarea name="note" rows="3" placeholder="Any allergies, restrictions, or a message for the couple..."></textarea>
-    </div>
-    <button type="submit" class="btn-submit">Confirm Attendance</button>
-  </form>
+  <p>Save the date and join us as we celebrate our wedding day.</p>
+  <div style="margin-top: 40px;">
+    <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Chester+%26+Elbee+Wedding&dates=20261122/20261123&details=Join+us+for+the+wedding+of+Chester+%26+Elbee&location=Kuala+Lumpur" target="_blank" rel="noopener" class="btn-submit" style="display:inline-flex; align-items:center; gap:10px; text-decoration:none;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+      </svg>
+      Save to Calendar
+    </a>
+  </div>
 </section>
 
 <!-- FOOTER -->
@@ -1846,19 +1805,6 @@
     window.addEventListener('scroll', onScroll, { passive: true });
   })();
 
-  function handleRsvp(e) {
-    e.preventDefault();
-    const btn = e.target.querySelector('.btn-submit');
-    btn.textContent = 'Thank You!';
-    btn.style.background = '#545a41';
-    btn.disabled = true;
-    setTimeout(() => {
-      btn.textContent = 'Confirm Attendance';
-      btn.style.background = '';
-      btn.disabled = false;
-      e.target.reset();
-    }, 4000);
-  }
 
   // fade-in on scroll
   const observer = new IntersectionObserver((entries) => {
@@ -1876,6 +1822,63 @@
     el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
     observer.observe(el);
   });
+</script>
+
+<!-- ── COUNTDOWN BAR ─────────────────────────────── -->
+<div id="countdownBar" style="
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 9998;
+  background: rgba(243,237,225,0.95);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(107,114,84,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  padding: 12px 24px;
+  font-family: 'Jost', sans-serif;
+">
+  <div id="countdownContent" style="display:flex; align-items:center; gap:32px;"></div>
+</div>
+
+<script>
+  (function() {
+    const target = new Date('2026-11-22T00:00:00');
+    const bar = document.getElementById('countdownContent');
+
+    function unit(val, label) {
+      return `<div style="text-align:center; min-width:40px;">
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:300; color:#2a2a25; line-height:1;">${String(val).padStart(2,'0')}</div>
+        <div style="font-size:0.5rem; letter-spacing:0.25em; text-transform:uppercase; color:#2a2a25; margin-top:8px; font-weight:500;">${label}</div>
+      </div>`;
+    }
+
+    function sep() {
+      return `<div style="font-family:'Cormorant Garamond',serif; font-size:1.4rem; color:rgba(107,114,84,0.4); line-height:1; padding-bottom:12px;">·</div>`;
+    }
+
+    function render() {
+      const now = new Date();
+      const diff = target - now;
+
+      if (diff <= 0) {
+        bar.innerHTML = `<div style="font-family:'Cormorant Garamond',serif; font-size:1.5rem; font-style:italic; color:#2a2a25; letter-spacing:0.05em;">It's the day!</div>`;
+        clearInterval(timer);
+        return;
+      }
+
+      const days  = Math.floor(diff / 86400000);
+      const hours = Math.floor((diff % 86400000) / 3600000);
+      const mins  = Math.floor((diff % 3600000) / 60000);
+      const secs  = Math.floor((diff % 60000) / 1000);
+
+      bar.innerHTML = unit(days,'days') + sep() + unit(hours,'hours') + sep() + unit(mins,'min') + sep() + unit(secs,'sec');
+    }
+
+    render();
+    const timer = setInterval(render, 1000);
+  })();
 </script>
 
 </body>
