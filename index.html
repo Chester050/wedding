@@ -1496,7 +1496,7 @@
         <span class="hero-name-clip"><span class="hero-name-inner">Chester <span class="amp">&amp;</span> Elbee</span></span>
       </h1>
       <div class="hero-divider"></div>
-      <p class="hero-sub"></p>
+      <p class="hero-sub">You are Invited</p>
     </div>
   </div>
 
@@ -2017,7 +2017,7 @@
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.12 });
+  }, { threshold: 0.3 });
 
   // Whole sections (excluding hero and the theme chapters / timeline, which run their own reveal)
   document.querySelectorAll('section:not(#hero):not(.chapter):not(#timeline), .botanical-band').forEach(el => {
@@ -2034,7 +2034,7 @@
         storyObserver.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.2 });
+  }, { threshold: 0.3 });
 
   document.querySelectorAll('.story-item, .story-media').forEach((el, i) => {
     fadeIn(el, (i % 2) * 180, '1.8s');
@@ -2073,7 +2073,7 @@
         revealObserver.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.2 });
+  }, { threshold: 0.3 });
 
   document.querySelectorAll('.chapter-header').forEach(el => revealObserver.observe(el));
 
@@ -2356,7 +2356,7 @@
 <script>
   (function() {
     // tuning knobs
-    const PIXELS_PER_SECOND = 50;
+    const PIXELS_PER_SECOND = 45;
     const START_DELAY_MS = 2000;
 
     const html = document.documentElement;
