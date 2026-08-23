@@ -716,6 +716,16 @@
       align-items: center;
     }
 
+    /* poster as background so a blocked autoplay degrades to the still, not an empty box */
+    .story-media {
+      max-width: 300px;
+      margin: 0 auto;
+      aspect-ratio: 9 / 16;
+      background: var(--poster) center / cover no-repeat;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
     .story-media video {
       width: 100%;
       max-width: 300px;
@@ -738,6 +748,7 @@
       .story-media {
         position: relative;
         aspect-ratio: 3 / 2;
+        max-width: none;
         overflow: hidden;
         border-radius: 4px;
         display: flex;
