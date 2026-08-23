@@ -545,12 +545,13 @@
     #hero.hero-reveal .hero-label { animation: heroFadeUp 700ms ease 300ms both; }
 
     .hero-names {
-      font-family: var(--font-serif);
+      font-family: 'Cormorant Garamond', var(--font-serif);
+      font-style: italic;
       /* single line on every width — vw-driven so it never wraps */
-      font-size: clamp(1.6rem, 7.6vw, 5rem);
-      font-weight: 500;
+      font-size: clamp(1.9rem, 8.8vw, 5.8rem);
+      font-weight: 300;
       line-height: 1.15;
-      letter-spacing: -0.01em;
+      letter-spacing: 0.005em;
       white-space: nowrap;
     }
 
@@ -587,35 +588,8 @@
 
     @keyframes heroFadeUp { to { opacity: 1; transform: translateY(0); } }
 
-    .scroll-hint {
-      position: absolute;
-      bottom: 18px;
-      left: 50%;
-      z-index: 2;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.58rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--shell);
-      opacity: 0;
-    }
-    #hero.hero-reveal .scroll-hint {
-      animation: heroFadeUp 500ms ease 1400ms both, fade-bob 2.4s ease-in-out 1900ms infinite;
-    }
-
-    .scroll-hint svg { width: 14px; }
-
-    @keyframes fade-bob {
-      0%, 100% { opacity: 0.55; transform: translateX(-50%) translateY(0); }
-      50% { opacity: 1; transform: translateX(-50%) translateY(6px); }
-    }
-
     @media (min-width: 768px) {
-      #hero { align-items: center; padding-bottom: 0; }
+      #hero { align-items: flex-end; padding-bottom: 30vh; }
       .hero-content {
         max-width: 1400px;
         margin: 0 auto;
@@ -624,7 +598,7 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .hero-bg img, .hero-name-inner, .hero-label, .hero-sub, .hero-divider, .scroll-hint {
+      .hero-bg img, .hero-name-inner, .hero-label, .hero-sub, .hero-divider {
         animation: none !important;
         transition: none !important;
         opacity: 1 !important;
@@ -992,6 +966,7 @@
       .chapter--bank-street .chapter-photo { width: 100% !important; margin: 0 !important; }
       .chapter--bank-street .chapter-photo:nth-child(2) { transform: translateY(80px); }
       .chapter--bank-street .chapter-photo.in-view:nth-child(2) { transform: translateY(80px); }
+      .chapter--bank-street .chapter-photo:only-child { grid-column: 2; }
 
       .chapter--casual .chapter-grid { grid-template-columns: repeat(12, 1fr); gap: 20px; }
       .chapter--casual .chapter-photo { width: 100%; margin: 0; }
@@ -1446,7 +1421,7 @@
     </button>
     <div class="music-info" onclick="toggleDropdown(event)" title="Browse playlist">
       <span class="music-label">Now Playing</span>
-      <span class="music-title" id="musicTitle">A Thousand Years</span>
+      <span class="music-title" id="musicTitle">Beautiful in White x Canon in D</span>
     </div>
     <div class="music-bars paused" id="musicBars" onclick="toggleDropdown(event)">
       <span></span><span></span><span></span><span></span>
@@ -1458,28 +1433,28 @@
     <!-- Dropdown playlist -->
     <div class="music-dropdown" id="musicDropdown">
       <div class="music-dropdown-header">Playlist</div>
-      <div class="music-track active" data-index="0" onclick="selectTrack(0)">
+      <div class="music-track active" onclick="selectTrack(0)">
         <span class="track-num">01</span>
-        <div class="track-info">
-          <div class="track-name">A Thousand Years</div>
-          <div class="track-artist">Christina Perri · Piano Cover by Riyandi Kusuma</div>
-        </div>
-      </div>
-      <div class="music-track" data-index="1" onclick="selectTrack(1)">
-        <span class="track-num">02</span>
         <div class="track-info">
           <div class="track-name">Beautiful in White x Canon in D</div>
           <div class="track-artist">Piano Cover by Riyandi Kusuma</div>
         </div>
       </div>
-      <div class="music-track" data-index="2" onclick="selectTrack(2)">
+      <div class="music-track" onclick="selectTrack(1)">
+        <span class="track-num">02</span>
+        <div class="track-info">
+          <div class="track-name">A Thousand Years</div>
+          <div class="track-artist">Christina Perri · Piano Cover by Riyandi Kusuma</div>
+        </div>
+      </div>
+      <div class="music-track" onclick="selectTrack(2)">
         <span class="track-num">03</span>
         <div class="track-info">
           <div class="track-name">Nothing's Gonna Change My Love for You</div>
           <div class="track-artist">Piano Cover by Riyandi Kusuma</div>
         </div>
       </div>
-      <div class="music-track" data-index="3" onclick="selectTrack(3)">
+      <div class="music-track" onclick="selectTrack(3)">
         <span class="track-num">04</span>
         <div class="track-info">
           <div class="track-name">Love Story</div>
@@ -1501,7 +1476,7 @@
 
 <!-- Audio -->
 <audio id="weddingAudio">
-  <source src="Christina Perri - A Thousand Years (Piano Cover by Riyandi Kusuma).mp3" type="audio/mpeg">
+  <source src="Beautiful in White x Canon in D (Piano Cover by Riyandi Kusuma).mp3" type="audio/mpeg">
 </audio>
 
 <!-- HERO -->
@@ -1525,13 +1500,6 @@
     </div>
   </div>
 
-  <div class="scroll-hint">
-    <svg viewBox="0 0 14 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="1" y="1" width="12" height="18" rx="6" stroke="currentColor" stroke-width="1.2"/>
-      <line x1="7" y1="5" x2="7" y2="9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
-    </svg>
-    Scroll
-  </div>
 </section>
 
 <!-- INTRO / OUR STORY -->
@@ -1563,10 +1531,8 @@
   </div>
   <div class="intro-illustration">
     <picture>
-      <source type="image/webp" srcset="Media/web/story/story-01-800.webp 800w,
-                                        Media/web/story/story-01-1179.webp 1179w"
-              sizes="(max-width: 900px) 300px, 380px">
-      <img src="Media/web/story/story-01-800.jpg" width="1179" height="2096"
+      <img src="Media/web/story/story-09.jpeg" width="1179" height="2096"
+           sizes="(max-width: 900px) 300px, 380px"
            loading="lazy" decoding="async" alt="Chester and Elbee at the cafe where they met">
     </picture>
   </div>
@@ -1900,14 +1866,14 @@
 
   const playlist = [
     {
-      src: 'Christina Perri - A Thousand Years (Piano Cover by Riyandi Kusuma).mp3',
-      title: 'A Thousand Years',
-      artist: 'Christina Perri · Piano Cover by Riyandi Kusuma'
-    },
-    {
       src: 'Beautiful in White x Canon in D (Piano Cover by Riyandi Kusuma).mp3',
       title: 'Beautiful in White x Canon in D',
       artist: 'Piano Cover by Riyandi Kusuma'
+    },
+    {
+      src: 'Christina Perri - A Thousand Years (Piano Cover by Riyandi Kusuma).mp3',
+      title: 'A Thousand Years',
+      artist: 'Christina Perri · Piano Cover by Riyandi Kusuma'
     },
     {
       src: "Nothing's Gonna Change My Love for You (Piano Cover by Riyandi Kusuma).mp3",
@@ -2177,6 +2143,8 @@
       lightbox.classList.add('open');
       const countdownBar = document.getElementById('countdownBar');
       if (countdownBar) countdownBar.style.display = 'none';
+      const scrollToggle = document.getElementById('autoScrollToggle');
+      if (scrollToggle) scrollToggle.style.display = 'none';
     }
 
     function close() {
@@ -2187,6 +2155,8 @@
       window.scrollTo(0, savedScrollY);
       const countdownBar = document.getElementById('countdownBar');
       if (countdownBar) countdownBar.style.display = '';
+      const scrollToggle = document.getElementById('autoScrollToggle');
+      if (scrollToggle) scrollToggle.style.display = '';
     }
 
     function nav(dir) {
@@ -2270,6 +2240,61 @@
   }
 </script>
 
+<!-- ── AUTO-SCROLL TOGGLE ────────────────────────── -->
+<style>
+  #autoScrollToggle {
+    position: fixed;
+    right: 24px;
+    bottom: 76px;
+    z-index: 9997;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    height: 40px;
+    padding: 0 16px 0 13px;
+    border-radius: 20px;
+    border: 1px solid rgba(107,114,84,0.25);
+    background: rgba(253,252,250,0.95);
+    backdrop-filter: blur(10px);
+    color: #2a2a25;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.58rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 300ms ease, color 300ms ease, border-color 300ms ease;
+  }
+
+  #autoScrollToggle:hover { border-color: rgba(107,114,84,0.5); }
+
+  #autoScrollToggle.is-running {
+    background: rgba(107,114,84,0.9);
+    border-color: rgba(107,114,84,0.9);
+    color: #fdfcfa;
+  }
+
+  #autoScrollToggle svg { width: 11px; height: 13px; fill: currentColor; flex-shrink: 0; }
+  #autoScrollToggle .icon-pause { display: none; }
+  #autoScrollToggle.is-running .icon-pause { display: block; }
+  #autoScrollToggle.is-running .icon-play { display: none; }
+
+  #autoScrollToggle .label-pause { display: none; }
+  #autoScrollToggle.is-running .label-pause { display: inline; }
+  #autoScrollToggle.is-running .label-play { display: none; }
+
+  @media (max-width: 700px) {
+    #autoScrollToggle { right: 16px; bottom: 70px; }
+  }
+</style>
+
+<button id="autoScrollToggle" type="button" aria-pressed="false" aria-label="Start auto-scroll">
+  <svg class="icon-play" viewBox="0 0 12 14" aria-hidden="true"><path d="M0 0l12 7-12 7z"/></svg>
+  <svg class="icon-pause" viewBox="0 0 12 14" aria-hidden="true"><path d="M0 0h4v14H0zM8 0h4v14H8z"/></svg>
+  <span class="label-play">Auto Scroll</span>
+  <span class="label-pause">Scrolling</span>
+</button>
+
 <!-- ── COUNTDOWN BAR ─────────────────────────────── -->
 <div id="countdownBar" style="
   position: fixed;
@@ -2324,6 +2349,76 @@
 
     render();
     const timer = setInterval(render, 1000);
+  })();
+</script>
+
+<!-- AUTO-SCROLL (experimental) -->
+<script>
+  (function() {
+    // tuning knobs
+    const PIXELS_PER_SECOND = 50;
+    const START_DELAY_MS = 2000;
+
+    const html = document.documentElement;
+    const lightbox = document.getElementById('lightbox');
+    const toggle = document.getElementById('autoScrollToggle');
+    let running = false;
+    let lastTime = 0;
+    let targetY = 0;
+    let appliedY = 0;
+
+    function maxScroll() {
+      return html.scrollHeight - window.innerHeight;
+    }
+
+    function step(now) {
+      if (!running) return;
+      const dt = lastTime ? (now - lastTime) / 1000 : 0;
+      lastTime = now;
+
+      // lightbox locks body scroll; idle instead of fighting it
+      if (!lightbox || !lightbox.classList.contains('open')) {
+        // user scrolled away from where we left off — carry on from their position
+        if (Math.abs(window.scrollY - appliedY) > 2) targetY = window.scrollY;
+
+        targetY = Math.min(targetY + PIXELS_PER_SECOND * dt, maxScroll());
+        window.scrollTo(0, targetY);
+        appliedY = window.scrollY;
+      }
+      requestAnimationFrame(step);
+    }
+
+    function syncToggle() {
+      toggle.classList.toggle('is-running', running);
+      toggle.setAttribute('aria-pressed', String(running));
+      toggle.setAttribute('aria-label', running ? 'Pause auto-scroll' : 'Start auto-scroll');
+    }
+
+    function start() {
+      if (running) return;
+      running = true;
+      lastTime = 0;
+      targetY = appliedY = window.scrollY;
+      // html { scroll-behavior: smooth } would animate every frame's scrollTo
+      html.style.scrollBehavior = 'auto';
+      requestAnimationFrame(step);
+      syncToggle();
+    }
+
+    function stop() {
+      running = false;
+      html.style.scrollBehavior = '';
+      syncToggle();
+    }
+
+    toggle.addEventListener('click', () => running ? stop() : start());
+
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setTimeout(start, START_DELAY_MS);
+    }
+
+    // manual control from console
+    window.autoScroll = { start, stop, isRunning: () => running };
   })();
 </script>
 

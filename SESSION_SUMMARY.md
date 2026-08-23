@@ -65,21 +65,25 @@
 - All three clips are portrait 1080×1920. On desktop they sit inside a **`3 / 2` landscape frame**, whole and uncropped (`object-fit: contain`), over a blurred, darkened copy of their own poster (`::before`, `filter: blur(28px) brightness(0.65)`, poster passed in via a `--poster` inline custom property). A hard 16:9 crop was rejected — it discards ~68% of frame height and cuts heads and the proposal subtitles.
 - Videos are `autoplay muted loop playsinline preload="metadata"` with poster frames. Reveal observer now also watches `.story-media`.
 
-### 12. Simplified Chinese Layer + Casual/Beach Photos
+### 12. Default Track
+- **Beautiful in White x Canon in D** now plays first on the cover tap (previously A Thousand Years). Four places pin the opening track and all four had to agree: the `<audio><source>`, the `#musicTitle` label, `playlist[0]`, and which `.music-track` row carries `active`.
+- Fixed a desync in the dropdown while here: the rows had been reordered by hand so "Beautiful in White" showed as 01, but its `onclick` still called `selectTrack(0)` → A Thousand Years, and the two rows' `onclick` values were swapped. `selectTrack()` highlights by **DOM position**, so playlist array order must match row order. Removed the unused, now-wrong `data-index` attributes.
+
+### 13. Simplified Chinese Layer + Casual/Beach Photos
 - **Chinese companion lines** added throughout Our Story (`#intro`) and The Beginning of Forever (`#story`): a `.zh-sub` line under each heading, and a `.zh` paragraph under each English paragraph / story description. All `lang="zh-Hans"`.
 - Two new utility classes. Both list a **Latin family first** (`.zh` → Jost, `.zh-sub` → Cormorant Garamond) with `var(--font-cjk)` after it — the CJK webfont is subsetted to Chinese only, so names like "Chester" inside a Chinese sentence would otherwise fall back to the browser's default serif and render visibly mismatched.
 - **The Google Fonts `text=` subset must be regenerated whenever Chinese copy changes.** It previously covered only the 4 chapter verses, so the timeline's Chinese was already falling back. Rebuilt by scanning the whole file for CJK codepoints — now 181 unique characters. Re-run that scan after any Chinese edit or the new characters will not render in Noto Serif SC.
 - `Media/Casual/2P3A5094.jpg` (3648×5557 portrait) resized into `casual-06` at 800/1200/1600 WebP + JPEG, added to the Casual chapter ("Love is patient, love is kind") and appended to `manifest.json`. Named `-06` deliberately: `casual-01…05` already exist, so this avoids any renumbering.
 - Casual and Beach chapters are now **single-photo** (the other photos were removed by hand). Both inherited first-of-many rules that cropped them wrongly — Casual was forced to 4:5 and cut the couple off at the bottom, Beach's landscape shot was forced into a 2:3 portrait. Fixed with `:only-child` rules: Casual 2:3 portrait, Beach 3:2 landscape. The `nth-child(2..4)` rules for both chapters are now dead but were left in place so re-adding photos still works.
 
-### 13. Cover Page Logo
+### 14. Cover Page Logo
 - Cover monogram image swapped from `logo.jpeg` to a square crop of `Media/Bank Street/2P3A5068-copy.jpg` (the red-dress Bank Street shot).
 - Source is 5472×3648 landscape; cropped to a 3648² square at x-offset 1400 to keep both of them in frame, exported to `Media/web/cover/cover-logo-{400,800}.{jpg,webp}`.
 - `border-radius: 50%` added to `.cover-monogram img`. The container already clipped to a circle, so this is belt-and-braces; the decorative inner hairline ring (`::before`) is unchanged.
 - `2P3A5068-copy.jpg` is a 6th file in `Media/Bank Street/`, which the pipeline never saw. **Do not re-run `optimize-media.py` blind** — it sorts by filename, so this file would slot in as `bank-street-05` and renumber every Bank Street asset, breaking the chapter markup.
 - Nav logo and footer monogram still use `logo.jpeg`.
 
-### 14. Video Pipeline (new)
+### 15. Video Pipeline (new)
 - `ffmpeg` (Gyan.FFmpeg, winget) — already installed but **not on PATH**; invoke by full path at `%LOCALAPPDATA%\Microsoft\WinGet\Packages\Gyan.FFmpeg_*\ffmpeg-9.0-full_build\bin\`.
 - Originals are HEVC in a QuickTime `.mov` container — unplayable in browsers. Transcode: `-an -vf scale=640:-2 -c:v libx264 -crf 30 -preset slow -pix_fmt yuv420p -movflags +faststart`. Poster frame: `-ss 1 -frames:v 1 -q:v 4`.
 - VP9/WebM was tried and dropped — it came out *larger* than the H.264 MP4 at equivalent quality.
