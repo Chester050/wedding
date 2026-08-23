@@ -59,6 +59,18 @@
       "aspect": 1.5,
       "orientation": "landscape",
       "original": "2P3A5158.jpg"
+    },
+    {
+      "base": "casual-06",
+      "dir": "Media/web/casual",
+      "widths": [
+        800,
+        1200,
+        1600
+      ],
+      "aspect": 0.6565,
+      "orientation": "portrait",
+      "original": "2P3A5094.jpg"
     }
   ],
   "bank-street": [
