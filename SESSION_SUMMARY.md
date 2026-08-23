@@ -63,7 +63,14 @@
 - All three clips are portrait 1080×1920. On desktop they sit inside a **`3 / 2` landscape frame**, whole and uncropped (`object-fit: contain`), over a blurred, darkened copy of their own poster (`::before`, `filter: blur(28px) brightness(0.65)`, poster passed in via a `--poster` inline custom property). A hard 16:9 crop was rejected — it discards ~68% of frame height and cuts heads and the proposal subtitles.
 - Videos are `autoplay muted loop playsinline preload="metadata"` with poster frames. Reveal observer now also watches `.story-media`.
 
-### 12. Video Pipeline (new)
+### 12. Cover Page Logo
+- Cover monogram image swapped from `logo.jpeg` to a square crop of `Media/Bank Street/2P3A5068-copy.jpg` (the red-dress Bank Street shot).
+- Source is 5472×3648 landscape; cropped to a 3648² square at x-offset 1400 to keep both of them in frame, exported to `Media/web/cover/cover-logo-{400,800}.{jpg,webp}`.
+- `border-radius: 50%` added to `.cover-monogram img`. The container already clipped to a circle, so this is belt-and-braces; the decorative inner hairline ring (`::before`) is unchanged.
+- `2P3A5068-copy.jpg` is a 6th file in `Media/Bank Street/`, which the pipeline never saw. **Do not re-run `optimize-media.py` blind** — it sorts by filename, so this file would slot in as `bank-street-05` and renumber every Bank Street asset, breaking the chapter markup.
+- Nav logo and footer monogram still use `logo.jpeg`.
+
+### 13. Video Pipeline (new)
 - `ffmpeg` (Gyan.FFmpeg, winget) — already installed but **not on PATH**; invoke by full path at `%LOCALAPPDATA%\Microsoft\WinGet\Packages\Gyan.FFmpeg_*\ffmpeg-9.0-full_build\bin\`.
 - Originals are HEVC in a QuickTime `.mov` container — unplayable in browsers. Transcode: `-an -vf scale=640:-2 -c:v libx264 -crf 30 -preset slow -pix_fmt yuv420p -movflags +faststart`. Poster frame: `-ss 1 -frames:v 1 -q:v 4`.
 - VP9/WebM was tried and dropped — it came out *larger* than the H.264 MP4 at equivalent quality.
