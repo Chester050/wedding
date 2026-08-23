@@ -1,0 +1,287 @@
+{
+  "casual": [
+    {
+      "base": "casual-01",
+      "dir": "Media/web/casual",
+      "widths": [
+        800,
+        1200,
+        1600
+      ],
+      "aspect": 0.6667,
+      "orientation": "portrait",
+      "original": "2P3A5091.jpg"
+    },
+    {
+      "base": "casual-02",
+      "dir": "Media/web/casual",
+      "widths": [
+        800,
+        1200,
+        1600
+      ],
+      "aspect": 0.6667,
+      "orientation": "portrait",
+      "original": "2P3A5098.jpg"
+    },
+    {
+      "base": "casual-03",
+      "dir": "Media/web/casual",
+      "widths": [
+        800,
+        1200,
+        1600
+      ],
+      "aspect": 1.5,
+      "orientation": "landscape",
+      "original": "2P3A5150.jpg"
+    },
+    {
+      "base": "casual-04",
+      "dir": "Media/web/casual",
+      "widths": [
+        800,
+        1200,
+        1600
+      ],
+      "aspect": 0.6667,
+      "orientation": "portrait",
+      "original": "2P3A5157-1.jpg"
+    },
+    {
+      "base": "casual-05",
+      "dir": "Media/web/casual",
+      "widths": [
+        800,
+        1200,
+        1600
+      ],
+      "aspect": 1.5,
+      "orientation": "landscape",
+      "original": "2P3A5158.jpg"
+    }
+  ],
+  "bank-street": [
+    {
+      "base": "bank-street-01",
+      "dir": "Media/web/bank-street",
+      "widths": [
+        800,
+        1200,
+        1600
+      ],
+      "aspect": 0.6667,
+      "orientation": "portrait",
+      "original": "2P3A4973.jpg"
+    },
+    {
+      "base": "bank-street-02",
+      "dir": "Media/web/bank-street",
+      "widths": [
+        800,
+        1200,
+        1600
+      ],
+      "aspect": 0.6667,
+      "orientation": "portrait",
+      "original": "2P3A4990.jpg"
+    },
+    {
+      "base": "bank-street-03",
+      "dir": "Media/web/bank-street",
+      "widths": [
+        800,
+        1200,
+        1600
+      ],
+      "aspect": 0.6667,
+      "orientation": "portrait",
+      "original": "2P3A4994.jpg"
+    },
+    {
+      "base": "bank-street-04",
+      "dir": "Media/web/bank-street",
+      "widths": [
+        800,
+        1200,
+        1600
+      ],
+      "aspect": 0.6667,
+      "orientation": "portrait",
+      "original": "2P3A5042.jpg"
+    },
+    {
+      "base": "bank-street-05",
+      "dir": "Media/web/bank-street",
+      "widths": [
+        800,
+        1200,
+        1600
+      ],
+      "aspect": 0.6667,
+      "orientation": "portrait",
+      "original": "2P3A5073.jpg"
+    }
+  ],
+  "beach": [
+    {
+      "base": "beach-01",
+      "dir": "Media/web/beach",
+      "widths": [
+        800,
+        1200,
+        1600
+      ],
+      "aspect": 0.6667,
+      "orientation": "portrait",
+      "original": "2P3A5196.jpg"
+    },
+    {
+      "base": "beach-02",
+      "dir": "Media/web/beach",
+      "widths": [
+        800,
+        1200,
+        1600
+      ],
+      "aspect": 1.5,
+      "orientation": "landscape",
+      "original": "2P3A5210.jpg"
+    },
+    {
+      "base": "beach-03",
+      "dir": "Media/web/beach",
+      "widths": [
+        800,
+        1200,
+        1600
+      ],
+      "aspect": 1.5,
+      "orientation": "landscape",
+      "original": "2P3A5256.jpg"
+    },
+    {
+      "base": "beach-04",
+      "dir": "Media/web/beach",
+      "widths": [
+        800,
+        1200,
+        1600
+      ],
+      "aspect": 1.5,
+      "orientation": "landscape",
+      "original": "2P3A5280.jpg"
+    },
+    {
+      "base": "beach-05",
+      "dir": "Media/web/beach",
+      "widths": [
+        800,
+        1200,
+        1600
+      ],
+      "aspect": 1.5,
+      "orientation": "landscape",
+      "original": "s3_1 拷贝.jpg"
+    },
+    {
+      "base": "beach-06",
+      "dir": "Media/web/beach",
+      "widths": [
+        800,
+        1200,
+        1600
+      ],
+      "aspect": 1.5,
+      "orientation": "landscape",
+      "original": "s3_2.jpg"
+    }
+  ],
+  "chapel": [
+    {
+      "base": "chapel-01",
+      "dir": "Media/web/chapel",
+      "widths": [
+        800,
+        1200,
+        1600
+      ],
+      "aspect": 0.6667,
+      "orientation": "portrait",
+      "original": "2P3A5324.jpg"
+    },
+    {
+      "base": "chapel-02",
+      "dir": "Media/web/chapel",
+      "widths": [
+        800,
+        1200,
+        1600
+      ],
+      "aspect": 0.6667,
+      "orientation": "portrait",
+      "original": "2P3A5331.jpg"
+    },
+    {
+      "base": "chapel-03",
+      "dir": "Media/web/chapel",
+      "widths": [
+        800,
+        1200,
+        1600
+      ],
+      "aspect": 1.5,
+      "orientation": "landscape",
+      "original": "2P3A5376.jpg"
+    },
+    {
+      "base": "chapel-04",
+      "dir": "Media/web/chapel",
+      "widths": [
+        800,
+        1200,
+        1600
+      ],
+      "aspect": 1.5,
+      "orientation": "landscape",
+      "original": "s4_1.jpg"
+    },
+    {
+      "base": "chapel-05",
+      "dir": "Media/web/chapel",
+      "widths": [
+        800,
+        1200,
+        1600
+      ],
+      "aspect": 1.5,
+      "orientation": "landscape",
+      "original": "s4_2 拷贝.jpg"
+    },
+    {
+      "base": "chapel-06",
+      "dir": "Media/web/chapel",
+      "widths": [
+        800,
+        1200,
+        1600
+      ],
+      "aspect": 1.5,
+      "orientation": "landscape",
+      "original": "s4_3.jpg"
+    }
+  ],
+  "story": [
+    {
+      "base": "story-01",
+      "dir": "Media/web/story",
+      "widths": [
+        800,
+        1179
+      ],
+      "aspect": 0.5625,
+      "orientation": "portrait",
+      "original": "Cafe Meet.jpg"
+    }
+  ]
+}

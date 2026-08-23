@@ -3,7 +3,29 @@
     "allow": [
       "mcp__plugin_puppeteer_puppeteer__puppeteer_navigate",
       "mcp__plugin_puppeteer_puppeteer__puppeteer_screenshot",
-      "mcp__plugin_puppeteer_puppeteer__puppeteer_evaluate"
-    ]
+      "mcp__plugin_puppeteer_puppeteer__puppeteer_evaluate",
+      "Read(//c/Users/kchet/.claude/plugins/**)",
+      "Bash(python -m pip install --user Pillow)",
+      "Bash(python -c ' *)",
+      "Bash(PYTHONIOENCODING=utf-8 python -c ' *)",
+      "Bash(PYTHONIOENCODING=utf-8 python optimize-media.py)",
+      "WebFetch(domain:cnbible.com)",
+      "WebFetch(domain:wd.bible)",
+      "WebFetch(domain:xybk.fuyin.tv)",
+      "WebFetch(domain:www.divinerevelations.info)",
+      "Bash(python3 -c ' *)",
+      "Bash",
+      "Read(//c/Users/kchet/.claude/skills/playwright/**)",
+      "Bash(npm run *)",
+      "Bash(node run.js \"C:\\\\Users\\\\kchet\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-kchet-Documents-wedding\\\\afca17c8-80c1-45cf-a203-e7386687aa60\\\\scratchpad\\\\test-wedding.js\")",
+      "Bash(node run.js \"C:\\\\Users\\\\kchet\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-kchet-Documents-wedding\\\\afca17c8-80c1-45cf-a203-e7386687aa60\\\\scratchpad\\\\debug-countdown.js\")",
+      "Bash(node run.js \"C:\\\\Users\\\\kchet\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-kchet-Documents-wedding\\\\afca17c8-80c1-45cf-a203-e7386687aa60\\\\scratchpad\\\\debug-fixes.js\")",
+      "Bash(node run.js \"C:\\\\Users\\\\kchet\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-kchet-Documents-wedding\\\\afca17c8-80c1-45cf-a203-e7386687aa60\\\\scratchpad\\\\debug-audio-real.js\")",
+      "Bash(tasklist)",
+      "Bash(python -c \"import playwright, sys; print\\('ok'\\)\")",
+      "PowerShell(winget install *)",
+      "PowerShell($p = Get-ChildItem \"$env:LOCALAPPDATA\\\\Microsoft\\\\WinGet\\\\Packages\" -Recurse -Filter ffmpeg.exe -ErrorAction SilentlyContinue | Select-Object -First 1; if \\($p\\) { $p.FullName } else { \"not found\" })"
+    ],
+    "defaultMode": "bypassPermissions"
   }
 }

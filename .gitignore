@@ -1,0 +1,4 @@
+# Camera originals (~388MB) — keep on disk, never in git history.
+# Web-ready derivatives in Media/web/ are committed instead.
+Media/*
+!Media/web/
