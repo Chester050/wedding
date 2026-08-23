@@ -2028,7 +2028,9 @@
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.3 });
+    // sections are taller than a phone viewport, so a 0.3 threshold could never be
+    // reached there — trigger once the top edge clears the lower quarter instead
+  }, { threshold: 0, rootMargin: '0px 0px -25% 0px' });
 
   // Whole sections (excluding hero and the theme chapters / timeline, which run their own reveal)
   document.querySelectorAll('section:not(#hero):not(.chapter):not(#timeline), .botanical-band').forEach(el => {
