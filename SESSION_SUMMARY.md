@@ -1,5 +1,5 @@
 # Wedding Website — Session Summary
-**Last updated:** 2026-08-23
+**Last updated:** 2026-08-25
 **File:** `index.html`
 **Source plan:** `design-implement.md`
 
@@ -95,6 +95,37 @@
 | `Media/web/story/proposal-clip.mp4` | `story_8-38_to_8-58.mov` (32 MB) | 2.2 MB |
 | `*-poster.jpg` ×3 | frame at 1s | 73 / 91 / 71 KB |
 
+### 16. Hometown Video (Our Story)
+- `.story-media--meeting` video swapped from `Media/web/story/penang-cable-car.mp4` to `Media/web/story/IMG_1771.MOV`. Poster unchanged.
+- **Not transcoded** — still the raw `.mov`/HEVC container, same problem §15 already solved for the other 3 clips. Chrome/Firefox/Android will likely fail to play it. Should go through the same `ffmpeg` pipeline as the others before launch.
+
+### 17. Hero/Cover Name Font
+- Tried `Lucy Said Ok` first (`@font-face`, `Media/font/lucy-said-ok-personal-use.italic.ttf`), then replaced with **`Hello Graduation`** per follow-up request. Applies to `.hero-names` and `.cover-names`.
+- `Media/font/` turned out to be covered by `.gitignore` (`Media/*` except `Media/web/`), so the font never reached git — worked on desktop (local file) but not on mobile (deployed site) until caught. Fixed by moving the used file to `Media/web/font/hello-graduation.hello-graduation-script.ttf` and updating the `@font-face` `src`; committed + pushed (`3fbad77`).
+- The unused `lucy-said-ok-personal-use.italic.ttf` was left behind in `Media/font/` (still gitignored, harmless, orphaned).
+
+### 18. RSVP — Google Form Embed
+- New `#rsvp-form` section (button "RSVP Now") inserted before the existing `#rsvp` (calendar) section. Click opens a centered modal (scrim + card, `.rsvp-modal`) with the form in an `<iframe>`, embed URL `https://docs.google.com/forms/d/e/1FAIpQLSfUz6U_zGgoEt4u7gQ787B97I4hqSD3HXWCMpm1mIxtcc9Z9Q/viewform?embedded=true` (resolved from the `forms.gle` short link via redirect).
+- **Submit-detection (animated checkmark) was tried and removed.** Original approach: iframe `load` event fires twice — once for the form, once for Google's post-submit reload — second load swapped in an animated checkmark. In practice Google's embed fires a second `load` almost immediately on open (internal re-render), so the checkmark fired before the user submitted anything. Added a 4s minimum-fill-time guard as a first fix; ultimately the whole feature (checkmark SVG/CSS/JS, `#rsvpSuccess` markup) was removed per request — the modal now just holds the form; user closes it manually (× / scrim / Esc) after submitting.
+- Sizing churn: modal card height raised **+20%** (`720px/88vh` → `864px/95vh`), then a `transform: scale(1.2)` was tried on the iframe itself to make the *form content* look taller (the visual target, class `HB1eCd-UMrnmb PHOcVb`, is inside Google's cross-origin iframe document — unreachable from our CSS/JS, same-origin policy). Both the scale and the +20% height were then reverted back down: iframe back to plain `width:100%; height:100%`, modal card height **shortened 20%** to `min(691px, 76vh)`.
+- Net state: plain iframe, no scale, no success animation, modal height `min(691px, 76vh)`.
+
+### 19. Auto-Scroll Disabled by Default
+- The page's auto-scroll feature previously self-started via `setTimeout(start, START_DELAY_MS)` unless `prefers-reduced-motion` was set. Removed the auto-start call; `syncToggle()` still runs so the toggle button's UI state is correct at rest. User must now turn it on manually.
+
+### 20. Section Dividers (new `.section-divider` component)
+- New reusable pattern: a 28px-tall, `overflow:hidden` band holding the existing botanical SVG (`viewBox 0 0 1440 200`, `preserveAspectRatio="xMidYMid slice"`, `fill:#6b7254`/`var(--green)`) — the short container + `slice` naturally crops the full illustration into a thin decorative strip, no changes to the SVG itself.
+- Applied at three points: between `#rsvp-form` and `#rsvp` (Save to Calendar), between the 4th theme chapter (Chapel) and the Day-of Timeline, and between the Day-of Timeline and Location/Details.
+- The old `.botanical-band` (180px tall, `var(--green)` background, ellipses at `opacity:0.18`) that previously sat between Timeline and Location was replaced by `.section-divider` at that spot — its CSS rules and its entry in the `IntersectionObserver` `querySelectorAll` reveal-selector were removed as orphaned.
+
+### 21. "Save to Calendar" Section Title
+- `#rsvp` section `<h2 class="section-title">` changed from "RSVP" to **"Save to Calendar"**, since that section only ever held the "Save to Calendar" button — the actual RSVP action now lives in the new `#rsvp-form` section above it (§18). `section-label` ("Save it to your Calender") left as-is.
+
+### 22. Logo Swaps
+- New asset `Chester & Elbee Logo.jpeg` (repo root, already tracked in git) applied to: footer monogram (`.footer-monogram img`, was `logo.jpeg`) and navbar logo (`.nav-logo img`, was `logo.jpeg`).
+- Cover page monogram was swapped to the new logo too, then **reverted back** to the original responsive `<picture>` (`Media/web/cover/cover-logo-{400,800}.{jpg,webp}`) per follow-up request — cover page still uses the red-dress Bank Street crop from §14, not the new logo.
+- `logo.jpeg` (old asset) is now unused except as the `<link rel="icon">` favicon — left alone, wasn't in scope.
+
 ## Verification
 - Playwright: mobile (390×844) and desktop (1440×900) screenshots of hero, all 4 chapters, timeline, details, RSVP, footer; confirmed `body` background color shifts per chapter; confirmed lightbox opens/closes and countdown bar hides while it's open; confirmed audio `currentTime` keeps advancing through the hero sequence; zero console/page errors; zero broken images.
 - Story section re-verified after the video work: measured box positions at both breakpoints match the intended grid, both videos report `paused: false` with `currentTime` advancing, zero console errors.
@@ -109,3 +140,4 @@
 1. Song of Songs 3:4 Chinese clause — please have someone confirm the exact CNV wording.
 2. Day-of Timeline times/venues — currently placeholders (06:30/08:00 at "Bride's Home", 18:30 "Venue TBC").
 3. Unused files in `Media/Story/` — `copy_3488848C-….mov` (900 MB) and `5f63519636454ebb835d9020f152dc9b.mov` (14 MB). Delete or transcode?
+4. **`IMG_1771.MOV` (Hometown Visit video, §16) is not transcoded.** Still raw HEVC `.mov`, same format the other 3 story videos were converted out of in §15. Will likely fail to play on Chrome/Firefox/Android until run through the same `ffmpeg` H.264 pipeline.
