@@ -183,7 +183,7 @@
 
     .cover-date {
       font-family: 'Jost', sans-serif;
-      font-size: 0.6rem;
+      font-size: 0.72rem;
       letter-spacing: 0.35em;
       text-transform: uppercase;
       color: var(--green);
@@ -691,16 +691,21 @@
       margin-bottom: 16px;
     }
 
-    .intro-illustration { text-align: center; }
+    .intro-illustration {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      max-width: 420px;
+      margin: 0 auto;
+    }
     .intro-illustration img {
       width: 100%;
-      max-width: 380px;
-      height: auto;
+      height: 100%;
       aspect-ratio: 4 / 5;
       object-fit: cover;
       object-position: center 20%;
       display: block;
-      margin: 0 auto;
+      border-radius: 8px;
     }
 
     /* ── STORY ───────────────────────────────────── */
@@ -1386,7 +1391,7 @@
       .nav-links { gap: 20px; }
 
       #intro { grid-template-columns: 1fr; gap: 40px; padding: 60px 24px; }
-      .intro-illustration img { max-width: 300px; }
+      .intro-illustration { max-width: 300px; }
 
       .story-grid { grid-template-columns: 1fr; gap: 32px; }
 
@@ -1513,8 +1518,10 @@
   </div>
   <ul class="nav-links">
     <li><a href="#intro">Our Story</a></li>
-    <li><a href="#details">Details</a></li>
-    <li><a href="#chapters">Photos</a></li>
+    <li><a href="#story">The Beginning of Forever</a></li>
+    <li><a href="#chapters">Love</a></li>
+    <li><a href="#timeline">Day-of Timeline</a></li>
+    <li><a href="#details">Location</a></li>
     <li><a href="#rsvp-form">RSVP</a></li>
     <li><a href="#rsvp">Save to Calendar</a></li>
   </ul>
@@ -1573,6 +1580,13 @@
           <div class="track-artist">Taylor Swift · Piano Cover by Riyandi Kusuma</div>
         </div>
       </div>
+      <div class="music-track" onclick="selectTrack(4)">
+        <span class="track-num">05</span>
+        <div class="track-info">
+          <div class="track-name">Canon in D</div>
+          <div class="track-artist">Pachelbel's Canon · Cello &amp; Piano</div>
+        </div>
+      </div>
     </div>
   </div>
 </nav>
@@ -1608,7 +1622,8 @@
         <span class="hero-name-clip"><span class="hero-name-inner">Chester <span class="amp">&amp;</span> Elbee</span></span>
       </h1>
       <div class="hero-divider"></div>
-      <p class="hero-sub">You are Invited</p>
+      <p class="hero-sub">We are getting married</p>
+      <p class="hero-sub">We are overjoyed to invite you to witness the beginning of our forever</p>
     </div>
   </div>
 
@@ -1623,29 +1638,47 @@
     </h2>
     <div class="thin-rule"></div>
     <p>
-      What started as a friendship in church became the most beautiful chapter of their lives.
-      Through almost nine years of knowing each other — shared laughter, quiet evenings, and
-      countless moments together — Chester and Elbee's love simply blossomed, in its own time,
-      in the most beautiful way.
+      Nearly a decade ago, Chester and Elbee first met in church. For many years, they walked
+      alongside each other as friends—never knowing that God was quietly writing a beautiful
+      story for them.
     </p>
     <p class="zh" lang="zh-Hans">
-      从教会里的一段友谊开始，成为他们生命中最美的篇章。相识近九年，共同的欢笑、安静的夜晚，
-      以及数不清的相伴时光，Chester 与 Elbee 的爱，在最合适的时候，以最美的方式悄然绽放。
+      近十年前，Chester 与 Elbee 在教会里相识。多年来，他们以朋友的身份陪伴彼此，
+      却未曾想到，上帝早已在他们的生命中，悄悄写下一段美丽的爱情故事。
     </p>
     <p>
-      Now, after nearly a decade of growing together, they are ready to begin their greatest
-      journey yet. They invite their family and closest friends to celebrate the day they say "I do."
+      Two years ago, in His perfect timing, friendship blossomed into love. What began with
+      familiarity grew into companionship, commitment, and the promise of a lifetime together.
     </p>
     <p class="zh" lang="zh-Hans">
-      如今，相识了近十年的他们，准备好迎接人生中最重要的旅程。诚邀家人与挚友，
-      一同见证他们说出「我愿意」的那一天。
+      直到两年前，在上帝最美好的时间里，友情渐渐开花，成为爱情。从熟悉到相爱，从陪伴到承诺，
+      他们决定牵起彼此的手，一同走向人生的下一段旅程。
+    </p>
+    <p>
+      Now, with grateful hearts, they invite their beloved family and friends to witness the
+      beginning of their forever—the day they say, "I do."
+    </p>
+    <p class="zh" lang="zh-Hans">
+      如今，他们怀着感恩与喜悦的心，诚挚邀请亲爱的家人与朋友，一同见证他们说出「我愿意」的这一天，
+      见证属于他们永恒故事的开始。
     </p>
   </div>
   <div class="intro-illustration">
     <picture>
       <img src="Media/web/story/story-09.jpeg" width="1179" height="2096"
-           sizes="(max-width: 900px) 300px, 380px"
            loading="lazy" decoding="async" alt="Chester and Elbee at the cafe where they met">
+    </picture>
+    <picture>
+      <img src="Media/web/story/story-10.jpg" width="720" height="1280"
+           loading="lazy" decoding="async" alt="Chester and Elbee">
+    </picture>
+    <picture>
+      <img src="Media/web/story/story-11.jpg" width="720" height="1280"
+           loading="lazy" decoding="async" alt="Chester and Elbee">
+    </picture>
+    <picture>
+      <img src="Media/web/story/story-12.jpg" width="720" height="1280"
+           loading="lazy" decoding="async" alt="Chester and Elbee">
     </picture>
   </div>
 </section>
@@ -2039,9 +2072,12 @@
 
   <ul class="footer-links">
     <li><a href="#intro">Our Story</a></li>
-    <li><a href="#details">Details</a></li>
-    <li><a href="#chapters">Photos</a></li>
-    <li><a href="#rsvp">RSVP</a></li>
+    <li><a href="#story">The Beginning of Forever</a></li>
+    <li><a href="#chapters">Love</a></li>
+    <li><a href="#timeline">Day-of Timeline</a></li>
+    <li><a href="#details">Location</a></li>
+    <li><a href="#rsvp-form">RSVP</a></li>
+    <li><a href="#rsvp">Save to Calendar</a></li>
   </ul>
 
   <p class="footer-copy">Made with love &bull; Chester &amp; Elbee 2026</p>
@@ -2075,6 +2111,11 @@
       src: 'Taylor Swift - Love Story (Piano Cover by Riyandi Kusuma).mp3',
       title: 'Love Story',
       artist: 'Taylor Swift · Piano Cover by Riyandi Kusuma'
+    },
+    {
+      src: 'Canon in D Pachelbels Canon - Cello  Piano BEST WEDDING VERSION.mp3',
+      title: 'Canon in D',
+      artist: "Pachelbel's Canon · Cello & Piano"
     }
     // Add more songs here: { src: 'filename.mp3', title: '...', artist: '...' }
   ];
@@ -2411,8 +2452,10 @@
 <!-- MOBILE MENU OVERLAY -->
 <div class="nav-mobile-menu" id="navMobileMenu">
   <a href="#intro"   onclick="closeMobileMenu()">Our Story</a>
-  <a href="#details" onclick="closeMobileMenu()">Details</a>
-  <a href="#chapters" onclick="closeMobileMenu()">Photos</a>
+  <a href="#story"  onclick="closeMobileMenu()">The Beginning of Forever</a>
+  <a href="#chapters" onclick="closeMobileMenu()">Love</a>
+  <a href="#timeline" onclick="closeMobileMenu()">Day-of Timeline</a>
+  <a href="#details" onclick="closeMobileMenu()">Location</a>
   <a href="#rsvp-form" onclick="closeMobileMenu()">RSVP</a>
   <a href="#rsvp"    onclick="closeMobileMenu()">Save to Calendar</a>
 </div>
