@@ -105,7 +105,7 @@
     }
 
     .nav-links a {
-      font-size: 0.49rem;
+      font-size: 0.45rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       text-decoration: none;
@@ -2513,11 +2513,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 32px;
-  padding: 12px 24px;
+  gap: clamp(12px, 4vw, 32px);
+  padding: 12px clamp(8px, 3vw, 24px);
   font-family: 'Jost', sans-serif;
+  overflow-x: auto;
 ">
-  <div id="countdownContent" style="display:flex; align-items:center; gap:32px;"></div>
+  <div id="countdownContent" style="display:flex; align-items:center; gap:clamp(12px, 4vw, 32px);"></div>
 </div>
 
 <script>
@@ -2526,14 +2527,14 @@
     const bar = document.getElementById('countdownContent');
 
     function unit(val, label) {
-      return `<div style="text-align:center; min-width:40px;">
-        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:300; color:#2a2a25; line-height:1;">${String(val).padStart(2,'0')}</div>
-        <div style="font-size:0.5rem; letter-spacing:0.25em; text-transform:uppercase; color:#2a2a25; margin-top:8px; font-weight:500;">${label}</div>
+      return `<div style="text-align:center; min-width:clamp(26px, 8vw, 40px);">
+        <div style="font-family:'Cormorant Garamond',serif; font-size:clamp(0.8rem, 4vw, 1.28rem); font-weight:300; color:#2a2a25; line-height:1;">${String(val).padStart(2,'0')}</div>
+        <div style="font-size:0.45rem; letter-spacing:0.25em; text-transform:uppercase; color:#2a2a25; margin-top:8px; font-weight:500;">${label}</div>
       </div>`;
     }
 
     function sep() {
-      return `<div style="font-family:'Cormorant Garamond',serif; font-size:1.4rem; color:rgba(107,114,84,0.4); line-height:1; padding-bottom:12px;">·</div>`;
+      return `<div style="font-family:'Cormorant Garamond',serif; font-size:clamp(0.8rem, 3.2vw, 1.12rem); color:rgba(107,114,84,0.4); line-height:1; padding-bottom:12px;">·</div>`;
     }
 
     function render() {
