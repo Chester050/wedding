@@ -1429,7 +1429,7 @@
     .nav-mobile-menu.open { display: flex; }
 
     .nav-mobile-menu a {
-      font-size: 1.8rem;
+      font-size: 1.4rem;
       font-family: 'Cormorant Garamond', serif;
       font-weight: 300;
       color: var(--dark);
@@ -2512,13 +2512,13 @@
   border-top: 1px solid rgba(107,114,84,0.2);
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: safe center;
   gap: clamp(12px, 4vw, 32px);
   padding: 12px clamp(8px, 3vw, 24px);
   font-family: 'Jost', sans-serif;
   overflow-x: auto;
 ">
-  <div id="countdownContent" style="display:flex; align-items:center; gap:clamp(12px, 4vw, 32px);"></div>
+  <div id="countdownContent" style="display:flex; align-items:center; justify-content:safe center; gap:clamp(12px, 4vw, 32px);"></div>
 </div>
 
 <script>
