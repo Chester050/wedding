@@ -1198,6 +1198,72 @@
 
     .btn-submit:hover { background: var(--green-dark); }
 
+    /* ── RSVP FORM (Google Form modal) ─────────────── */
+    #rsvp-form {
+      background: var(--shell);
+      text-align: center;
+      padding: 120px 40px;
+    }
+    #rsvp-form .thin-rule { margin: 24px auto; }
+    #rsvp-form p { font-size: 0.9rem; color: var(--mid); max-width: 480px; margin: 0 auto 40px; }
+
+    .rsvp-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .rsvp-modal.is-open { display: flex; }
+
+    .rsvp-modal-scrim {
+      position: absolute;
+      inset: 0;
+      background: rgba(42,42,37,0.6);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .rsvp-modal.is-open .rsvp-modal-scrim { opacity: 1; }
+
+    .rsvp-modal-card {
+      position: relative;
+      background: var(--shell);
+      width: 100%;
+      max-width: 640px;
+      height: min(691px, 76vh);
+      border-radius: 4px;
+      overflow: hidden;
+      transform: translateY(16px);
+      opacity: 0;
+      transition: transform 0.35s cubic-bezier(.16,1,.3,1), opacity 0.35s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .rsvp-modal.is-open .rsvp-modal-card { transform: translateY(0); opacity: 1; }
+
+    .rsvp-modal-close {
+      position: absolute;
+      top: 10px;
+      right: 14px;
+      z-index: 2;
+      background: none;
+      border: none;
+      font-size: 1.6rem;
+      line-height: 1;
+      color: var(--mid);
+      cursor: pointer;
+      padding: 6px;
+    }
+    .rsvp-modal-close:hover { color: var(--dark); }
+
+    .rsvp-modal-body { flex: 1; min-height: 0; }
+    #rsvpFormFrame { width: 100%; height: 100%; border: 0; display: block; }
+
+    .section-divider { width: 100%; height: 28px; overflow: hidden; background: var(--shell); }
+    .section-divider svg { display: block; width: 100%; height: 100%; }
+
     /* ── FOOTER ──────────────────────────────────── */
     footer {
       background: var(--green);
@@ -1269,18 +1335,6 @@
       height: 160px;
       opacity: 0.07;
     }
-
-    /* ── BOTANICAL BAND ──────────────────────────── */
-    .botanical-band {
-      background: var(--green);
-      height: 180px;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .botanical-band svg { width: 100%; height: 200px; opacity: 0.18; }
 
     .hero-botanical-mobile { display: none; }
     @media (max-width: 768px) {
@@ -1700,6 +1754,35 @@
   <button class="lightbox-next" id="lightboxNext" aria-label="Next">&#8250;</button>
 </div>
 
+<div class="section-divider">
+  <svg viewBox="0 0 1440 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+    <g fill="#6b7254">
+      <ellipse cx="80" cy="180" rx="30" ry="60" transform="rotate(-10 80 180)"></ellipse>
+      <ellipse cx="130" cy="170" rx="20" ry="50" transform="rotate(8 130 170)"></ellipse>
+      <ellipse cx="170" cy="185" rx="25" ry="45" transform="rotate(-5 170 185)"></ellipse>
+      <ellipse cx="250" cy="175" rx="35" ry="70" transform="rotate(-12 250 175)"></ellipse>
+      <ellipse cx="310" cy="180" rx="22" ry="55" transform="rotate(6 310 180)"></ellipse>
+      <ellipse cx="380" cy="170" rx="28" ry="65" transform="rotate(-8 380 170)"></ellipse>
+      <ellipse cx="440" cy="185" rx="18" ry="42" transform="rotate(10 440 185)"></ellipse>
+      <ellipse cx="510" cy="172" rx="32" ry="68" transform="rotate(-6 510 172)"></ellipse>
+      <ellipse cx="570" cy="180" rx="20" ry="50" transform="rotate(12 570 180)"></ellipse>
+      <ellipse cx="640" cy="175" rx="27" ry="60" transform="rotate(-9 640 175)"></ellipse>
+      <ellipse cx="700" cy="183" rx="22" ry="48" transform="rotate(5 700 183)"></ellipse>
+      <ellipse cx="760" cy="170" rx="30" ry="65" transform="rotate(-11 760 170)"></ellipse>
+      <ellipse cx="830" cy="178" rx="25" ry="55" transform="rotate(7 830 178)"></ellipse>
+      <ellipse cx="900" cy="172" rx="35" ry="70" transform="rotate(-8 900 172)"></ellipse>
+      <ellipse cx="960" cy="182" rx="20" ry="44" transform="rotate(9 960 182)"></ellipse>
+      <ellipse cx="1030" cy="175" rx="28" ry="62" transform="rotate(-6 1030 175)"></ellipse>
+      <ellipse cx="1090" cy="180" rx="22" ry="50" transform="rotate(11 1090 180)"></ellipse>
+      <ellipse cx="1160" cy="173" rx="32" ry="68" transform="rotate(-7 1160 173)"></ellipse>
+      <ellipse cx="1220" cy="181" rx="19" ry="46" transform="rotate(8 1220 181)"></ellipse>
+      <ellipse cx="1290" cy="177" rx="26" ry="58" transform="rotate(-10 1290 177)"></ellipse>
+      <ellipse cx="1350" cy="184" rx="22" ry="48" transform="rotate(6 1350 184)"></ellipse>
+      <ellipse cx="1420" cy="172" rx="30" ry="64" transform="rotate(-8 1420 172)"></ellipse>
+    </g>
+  </svg>
+</div>
+
 <!-- DAY-OF TIMELINE -->
 <section id="timeline">
   <div class="chapter-header">
@@ -1729,8 +1812,8 @@
   </div>
 </section>
 
-<!-- BOTANICAL BAND -->
-<div class="botanical-band">
+<!-- SECTION DIVIDER -->
+<div class="section-divider">
   <svg viewBox="0 0 1440 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
     <g fill="#6b7254">
       <ellipse cx="80" cy="180" rx="30" ry="60" transform="rotate(-10 80 180)"/>
@@ -1819,10 +1902,60 @@
   </div>
 </section>
 
+<!-- RSVP FORM -->
+<section id="rsvp-form">
+  <p class="section-label">Kindly Respond</p>
+  <h2 class="section-title">RSVP</h2>
+  <div class="thin-rule"></div>
+  <p>We'd love to know if you can join us — please RSVP below.</p>
+  <button type="button" class="btn-submit" id="rsvpOpenBtn" style="border:none; cursor:pointer;">RSVP Now</button>
+</section>
+
+<div class="rsvp-modal" id="rsvpModal" aria-hidden="true">
+  <div class="rsvp-modal-scrim" id="rsvpModalScrim"></div>
+  <div class="rsvp-modal-card" role="dialog" aria-modal="true" aria-label="RSVP Form">
+    <button type="button" class="rsvp-modal-close" id="rsvpModalClose" aria-label="Close">&times;</button>
+    <div class="rsvp-modal-body" id="rsvpModalBody">
+      <iframe id="rsvpFormFrame"
+              src="https://docs.google.com/forms/d/e/1FAIpQLSfUz6U_zGgoEt4u7gQ787B97I4hqSD3HXWCMpm1mIxtcc9Z9Q/viewform?embedded=true"
+              title="RSVP Form" loading="lazy"></iframe>
+    </div>
+  </div>
+</div>
+
+<div class="section-divider">
+  <svg viewBox="0 0 1440 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+    <g fill="#6b7254">
+      <ellipse cx="80" cy="180" rx="30" ry="60" transform="rotate(-10 80 180)"></ellipse>
+      <ellipse cx="130" cy="170" rx="20" ry="50" transform="rotate(8 130 170)"></ellipse>
+      <ellipse cx="170" cy="185" rx="25" ry="45" transform="rotate(-5 170 185)"></ellipse>
+      <ellipse cx="250" cy="175" rx="35" ry="70" transform="rotate(-12 250 175)"></ellipse>
+      <ellipse cx="310" cy="180" rx="22" ry="55" transform="rotate(6 310 180)"></ellipse>
+      <ellipse cx="380" cy="170" rx="28" ry="65" transform="rotate(-8 380 170)"></ellipse>
+      <ellipse cx="440" cy="185" rx="18" ry="42" transform="rotate(10 440 185)"></ellipse>
+      <ellipse cx="510" cy="172" rx="32" ry="68" transform="rotate(-6 510 172)"></ellipse>
+      <ellipse cx="570" cy="180" rx="20" ry="50" transform="rotate(12 570 180)"></ellipse>
+      <ellipse cx="640" cy="175" rx="27" ry="60" transform="rotate(-9 640 175)"></ellipse>
+      <ellipse cx="700" cy="183" rx="22" ry="48" transform="rotate(5 700 183)"></ellipse>
+      <ellipse cx="760" cy="170" rx="30" ry="65" transform="rotate(-11 760 170)"></ellipse>
+      <ellipse cx="830" cy="178" rx="25" ry="55" transform="rotate(7 830 178)"></ellipse>
+      <ellipse cx="900" cy="172" rx="35" ry="70" transform="rotate(-8 900 172)"></ellipse>
+      <ellipse cx="960" cy="182" rx="20" ry="44" transform="rotate(9 960 182)"></ellipse>
+      <ellipse cx="1030" cy="175" rx="28" ry="62" transform="rotate(-6 1030 175)"></ellipse>
+      <ellipse cx="1090" cy="180" rx="22" ry="50" transform="rotate(11 1090 180)"></ellipse>
+      <ellipse cx="1160" cy="173" rx="32" ry="68" transform="rotate(-7 1160 173)"></ellipse>
+      <ellipse cx="1220" cy="181" rx="19" ry="46" transform="rotate(8 1220 181)"></ellipse>
+      <ellipse cx="1290" cy="177" rx="26" ry="58" transform="rotate(-10 1290 177)"></ellipse>
+      <ellipse cx="1350" cy="184" rx="22" ry="48" transform="rotate(6 1350 184)"></ellipse>
+      <ellipse cx="1420" cy="172" rx="30" ry="64" transform="rotate(-8 1420 172)"></ellipse>
+    </g>
+  </svg>
+</div>
+
 <!-- RSVP -->
 <section id="rsvp">
   <p class="section-label">Save it to your Calender</p>
-  <h2 class="section-title">RSVP</h2>
+  <h2 class="section-title">Save to Calendar</h2>
   <div class="thin-rule"></div>
   <p>Save the date and join us as we celebrate our wedding day.</p>
   <div style="margin-top: 40px;">
@@ -2041,7 +2174,7 @@
   }, { threshold: 0, rootMargin: '0px 0px -25% 0px' });
 
   // Whole sections (excluding hero and the theme chapters / timeline, which run their own reveal)
-  document.querySelectorAll('section:not(#hero):not(.chapter):not(#timeline), .botanical-band').forEach(el => {
+  document.querySelectorAll('section:not(#hero):not(.chapter):not(#timeline)').forEach(el => {
     fadeIn(el, 0);
     observer.observe(el);
   });
@@ -2434,12 +2567,42 @@
 
     toggle.addEventListener('click', () => running ? stop() : start());
 
-    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      setTimeout(start, START_DELAY_MS);
-    }
+    syncToggle();
 
     // manual control from console
     window.autoScroll = { start, stop, isRunning: () => running };
+  })();
+</script>
+
+<script>
+  (function () {
+    var FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSfUz6U_zGgoEt4u7gQ787B97I4hqSD3HXWCMpm1mIxtcc9Z9Q/viewform?embedded=true';
+
+    var openBtn   = document.getElementById('rsvpOpenBtn');
+    var modal     = document.getElementById('rsvpModal');
+    var scrim     = document.getElementById('rsvpModalScrim');
+    var closeBtn  = document.getElementById('rsvpModalClose');
+    var frame     = document.getElementById('rsvpFormFrame');
+
+    function openModal() {
+      frame.src = FORM_URL; // fresh load each time
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    openBtn.addEventListener('click', openModal);
+    closeBtn.addEventListener('click', closeModal);
+    scrim.addEventListener('click', closeModal);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+    });
   })();
 </script>
 
