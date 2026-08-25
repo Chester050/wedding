@@ -1420,8 +1420,10 @@
       backdrop-filter: blur(12px);
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       gap: 40px;
+      overflow-y: auto;
+      padding: 100px 24px 100px;
     }
 
     .nav-mobile-menu.open { display: flex; }
@@ -1955,8 +1957,8 @@
   <p class="section-label">Kindly Respond</p>
   <h2 class="section-title">RSVP</h2>
   <div class="thin-rule"></div>
-  <p>We'd love to know if you can join us —<br>please RSVP below.</p>
-  <button type="button" class="btn-submit" id="rsvpOpenBtn" style="border:none; cursor:pointer;">RSVP Now</button>
+  <p>We'd love to know if you can join us <br>please RSVP below.</p>
+  <button type="button" class="btn-submit" id="rsvpOpenBtn" style="border:none; cursor:pointer;">RSVP Now (现在预约)</button>
 </section>
 
 <div class="rsvp-modal" id="rsvpModal" aria-hidden="true">
@@ -2440,12 +2442,20 @@
     const open = mobileMenu.classList.toggle('open');
     hamburger.classList.toggle('open', open);
     document.body.style.overflow = open ? 'hidden' : '';
+    const countdownBar = document.getElementById('countdownBar');
+    if (countdownBar) countdownBar.style.display = open ? 'none' : '';
+    const scrollToggle = document.getElementById('autoScrollToggle');
+    if (scrollToggle) scrollToggle.style.display = open ? 'none' : '';
   });
 
   function closeMobileMenu() {
     mobileMenu.classList.remove('open');
     hamburger.classList.remove('open');
     document.body.style.overflow = '';
+    const countdownBar = document.getElementById('countdownBar');
+    if (countdownBar) countdownBar.style.display = '';
+    const scrollToggle = document.getElementById('autoScrollToggle');
+    if (scrollToggle) scrollToggle.style.display = '';
   }
 </script>
 
