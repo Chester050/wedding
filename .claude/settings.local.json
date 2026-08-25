@@ -24,7 +24,8 @@
       "Bash(tasklist)",
       "Bash(python -c \"import playwright, sys; print\\('ok'\\)\")",
       "PowerShell(winget install *)",
-      "PowerShell($p = Get-ChildItem \"$env:LOCALAPPDATA\\\\Microsoft\\\\WinGet\\\\Packages\" -Recurse -Filter ffmpeg.exe -ErrorAction SilentlyContinue | Select-Object -First 1; if \\($p\\) { $p.FullName } else { \"not found\" })"
+      "PowerShell($p = Get-ChildItem \"$env:LOCALAPPDATA\\\\Microsoft\\\\WinGet\\\\Packages\" -Recurse -Filter ffmpeg.exe -ErrorAction SilentlyContinue | Select-Object -First 1; if \\($p\\) { $p.FullName } else { \"not found\" })",
+      "Bash(git ls-tree *)"
     ],
     "defaultMode": "bypassPermissions"
   }

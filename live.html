@@ -20,14 +20,6 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    @font-face {
-      font-family: 'Hello Graduation';
-      src: url('Media/font/hello-graduation.hello-graduation-script.ttf') format('truetype');
-      font-style: normal;
-      font-weight: 400;
-      font-display: swap;
-    }
-
     :root {
       --green: #6b7254;
       --green-dark: #545a41;
@@ -191,7 +183,7 @@
     }
 
     .cover-names {
-      font-family: 'Hello Graduation', 'Cormorant Garamond', serif;
+      font-family: 'Cormorant Garamond', serif;
       font-size: clamp(2.8rem, 7vw, 5rem);
       font-weight: 300;
       color: var(--dark);
@@ -553,8 +545,8 @@
     #hero.hero-reveal .hero-label { animation: heroFadeUp 700ms ease 300ms both; }
 
     .hero-names {
-      font-family: 'Hello Graduation', 'Cormorant Garamond', var(--font-serif);
-      font-style: normal;
+      font-family: 'Cormorant Garamond', var(--font-serif);
+      font-style: italic;
       /* single line on every width — vw-driven so it never wraps */
       font-size: clamp(1.9rem, 8.8vw, 5.8rem);
       font-weight: 300;
@@ -724,16 +716,6 @@
       align-items: center;
     }
 
-    /* poster as background so a blocked autoplay degrades to the still, not an empty box */
-    .story-media {
-      max-width: 300px;
-      margin: 0 auto;
-      aspect-ratio: 9 / 16;
-      background: var(--poster) center / cover no-repeat;
-      border-radius: 4px;
-      overflow: hidden;
-    }
-
     .story-media video {
       width: 100%;
       max-width: 300px;
@@ -756,7 +738,6 @@
       .story-media {
         position: relative;
         aspect-ratio: 3 / 2;
-        max-width: none;
         overflow: hidden;
         border-radius: 4px;
         display: flex;
@@ -1468,7 +1449,7 @@
       </div>
       <div class="music-track" onclick="selectTrack(2)">
         <span class="track-num">03</span>
-        <div class="track-info"> 
+        <div class="track-info">
           <div class="track-name">Nothing's Gonna Change My Love for You</div>
           <div class="track-artist">Piano Cover by Riyandi Kusuma</div>
         </div>
@@ -1570,7 +1551,7 @@
       <p class="zh" lang="zh-Hans">回家见父母的旅程，熟悉的街道，槟城的山峦，晴朗的日子，还有身边心爱的人。</p>
     </div>
     <div class="story-media story-media--meeting" style="--poster: url('Media/web/story/penang-cable-car-poster.jpg')">
-      <video src="Media/web/story/IMG_1771.MOV"
+      <video src="Media/web/story/penang-cable-car.mp4"
              poster="Media/web/story/penang-cable-car-poster.jpg"
              width="640" height="1138"
              autoplay muted loop playsinline preload="metadata"
@@ -2036,9 +2017,7 @@
         observer.unobserve(entry.target);
       }
     });
-    // sections are taller than a phone viewport, so a 0.3 threshold could never be
-    // reached there — trigger once the top edge clears the lower quarter instead
-  }, { threshold: 0, rootMargin: '0px 0px -25% 0px' });
+  }, { threshold: 0.3 });
 
   // Whole sections (excluding hero and the theme chapters / timeline, which run their own reveal)
   document.querySelectorAll('section:not(#hero):not(.chapter):not(#timeline), .botanical-band').forEach(el => {
