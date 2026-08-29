@@ -1113,7 +1113,8 @@
       color: var(--green);
       margin-bottom: 4px;
     }
-    .timeline-title { font-family: var(--font-serif); font-size: 1.15rem; font-weight: 400; margin-bottom: 4px; }
+    .timeline-title { font-family: var(--font-serif); font-size: 1.15rem; font-weight: 400; margin-bottom: 4px; display: flex; align-items: center; gap: 8px; }
+    .timeline-icon { width: 22px; height: 22px; object-fit: contain; }
     .timeline-zh { font-family: var(--font-cjk); font-size: 0.9rem; font-weight: 400; color: var(--mid); margin-bottom: 4px; }
     .timeline-venue { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mid); }
 
@@ -1123,6 +1124,7 @@
       .timeline-entry { width: 46%; }
       .timeline-entry::before { left: auto; }
       .timeline-entry:nth-child(odd) { margin-right: 54%; text-align: right; }
+      .timeline-entry:nth-child(odd) .timeline-title { justify-content: flex-end; }
       .timeline-entry:nth-child(odd)::before { right: -33px; left: auto; }
       .timeline-entry:nth-child(even) { margin-left: 54%; }
       .timeline-entry:nth-child(even)::before { left: -33px; }
@@ -1602,7 +1604,6 @@
 
   <div class="hero-content">
     <div class="hero-inner">
-      <p class="hero-label">22 November 2026<br>(Sunday)<br>4:30 PM</p>
       <h1 class="hero-names">
         <span class="hero-name-clip"><span class="hero-name-inner">Chester <span class="amp">&amp;</span> Elbee</span></span>
       </h1>
@@ -1623,18 +1624,24 @@
     </h2>
     <div class="thin-rule"></div>
     <p>
-      Nearly a decade ago, Chester and Elbee met at church, knowing each other only from afar.
-      Two years ago, in God's perfect timing, their paths crossed again and love began to bloom.
+      Nearly a decade ago, Chester and Elbee met at church, never knowing that an ordinary acquaintance would one day become something beautiful.
+    </p>
+
+
+    <p class="zh" lang="zh-Hans">
+      近十年前，Chester 与 Elbee 在教会相识。那时的他们只是普通朋友，从未想过，这份平凡的相遇，会成为一段美丽故事的开始。
     </p>
     <p class="zh" lang="zh-Hans">
-      近十年前，Chester 与 Elbee 在教会相识，却没有太多交集。直到两年前，
-      在上帝最美好的时间里，他们渐渐走近彼此，爱情也悄然萌芽。
+      直到两年前，在上帝最美好的时间里，两颗心渐渐靠近，爱情也悄然绽放。
     </p>
-    <p>
-      With grateful hearts, they invite you to witness the beautiful beginning of their forever.
+        <p>
+      Two years ago, in God's perfect timing, their paths drew closer and love quietly began to bloom.
     </p>
     <p class="zh" lang="zh-Hans">
       如今，他们怀着感恩的心，诚挚邀请您一同见证幸福旅程的开始。
+    </p>
+    <p>
+      With grateful hearts, they invite you to witness the beginning of their forever.
     </p>
   </div>
   <div class="intro-illustration">
@@ -1841,14 +1848,14 @@
   </div>
   <div class="timeline-rail">
     <div class="timeline-entry">
-      <div class="timeline-time">05:00 PM</div>
-      <div class="timeline-title">Guest Arrival</div>
+      <div class="timeline-time">04:30 PM</div>
+      <div class="timeline-title"><img src="Media/icons/door.png" class="timeline-icon" alt="" loading="lazy">Guest Arrival</div>
       <div class="timeline-zh" lang="zh-Hans">宾客入场</div>
       <div class="timeline-venue">FGA CYC L5</div>
     </div>
     <div class="timeline-entry">
       <div class="timeline-time">5:00 PM</div>
-      <div class="timeline-title">Holy Matrimony</div>
+      <div class="timeline-title"><img src="Media/icons/bride.png" class="timeline-icon" alt="" loading="lazy">Holy Matrimony</div>
       <div class="timeline-zh" lang="zh-Hans">结婚圣礼</div>
       <div class="timeline-venue">FGA CYC L5</div>
     </div>
